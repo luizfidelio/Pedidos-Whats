@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command:*)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

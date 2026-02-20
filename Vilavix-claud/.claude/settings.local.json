@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:vilavix.tur.br)",
+      "Bash(dir:*)"
+    ]
+  }
+}
