@@ -7,7 +7,12 @@
       "Bash(git checkout:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd project files: Lavve, Vilavix, netecia-app web app, and configs\n\n- Add Vilavix-claud project \\(HTML/CSS/JS\\)\n- Add netecia-app WEB APP PRONTO \\(Next.js scaffold\\)\n- Add Pedidos Whats project directory\n- Add Guia_Completo_Hospedando_no_Servidor.docx\n- Add netecia-app.zip archive\n- Add package-lock.json\n- Update .claude/settings.local.json with expanded permissions\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(winget install:*)",
+      "Bash(where:*)"
     ]
   }
 }
