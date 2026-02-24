@@ -12,7 +12,8 @@
       "Bash(git push:*)",
       "Bash(gh pr create:*)",
       "Bash(winget install:*)",
-      "Bash(where:*)"
+      "Bash(where:*)",
+      "Bash(php --version:*)"
     ]
   }
 }

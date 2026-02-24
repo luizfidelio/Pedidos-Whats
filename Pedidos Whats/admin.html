@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Lavve</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-bg">
+      <div class="login-shapes">
+        <div class="ls1"></div>
+        <div class="ls2"></div>
+      </div>
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="ll-icon"><i class="fas fa-soap"></i></div>
+          <div>
+            <span class="ll-main">Lavve</span>
+            <span class="ll-sub">Painel Administrativo</span>
+          </div>
+        </div>
+        <h2>Bem-vindo de volta</h2>
+        <p class="login-sub">Faça login para acessar o painel</p>
+        <form id="loginForm">
+          <div class="lform-group">
+            <label><i class="fas fa-user"></i> Usuário</label>
+            <input type="text" id="loginUser" placeholder="admin" autocomplete="username" />
+          </div>
+          <div class="lform-group">
+            <label><i class="fas fa-lock"></i> Senha</label>
+            <div class="pass-wrap">
+              <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" />
+              <button type="button" class="pass-toggle" id="passToggle"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+          <p class="login-error" id="loginError"></p>
+          <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+        </form>
+        <p class="login-hint">Padrão: <strong>admin</strong> / <strong>lavve2024</strong></p>
+        <a href="index.html" class="login-back"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sl-icon"><i class="fas fa-soap"></i></div>
+          <div>
+            <span class="sl-main">Lavve</span>
+            <span class="sl-sub">Admin Panel</span>
+          </div>
+        </div>
+        <button class="sidebar-collapse" id="sidebarCollapse" title="Recolher menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <span class="nav-section-title">Principal</span>
+          <ul>
+            <li>
+              <a href="#" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-chart-pie"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-item" data-page="midias">
+                <i class="fas fa-images"></i><span>Mídias</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-item" data-page="produtos">
+                <i class="fas fa-box"></i><span>Produtos</span>
+                <span class="nav-badge" id="badgeProdutos">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <span class="nav-section-title">Gerenciar</span>
+          <ul>
+            <li>
+              <a href="#" class="nav-item" data-page="usuarios">
+                <i class="fas fa-users"></i><span>Usuários</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-item" data-page="configuracoes">
+                <i class="fas fa-cog"></i><span>Configurações</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info" id="sidebarUser">
+          <div class="user-avatar" id="sidebarAvatar">A</div>
+          <div>
+            <p class="user-name" id="sidebarName">Admin</p>
+            <p class="user-role" id="sidebarRole">Administrador</p>
+          </div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" title="Sair">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+          <div class="breadcrumb" id="breadcrumb">Dashboard</div>
+        </div>
+        <div class="topbar-right">
+          <a href="pedidos.html" target="_blank" class="topbar-btn">
+            <i class="fas fa-shopping-cart"></i><span>Ver Loja</span>
+          </a>
+          <a href="index.html" target="_blank" class="topbar-btn">
+            <i class="fas fa-external-link-alt"></i><span>Ver Site</span>
+          </a>
+          <div class="topbar-user">
+            <div class="user-avatar sm" id="topbarAvatar">A</div>
+            <span id="topbarName">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content" id="pageContent">
+        <!-- Conteudo dinamico -->
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL GENERICO -->
+  <div class="admin-modal-overlay" id="adminModalOverlay">
+    <div class="admin-modal" id="adminModal">
+      <div class="admin-modal-header">
+        <h3 id="adminModalTitle">Modal</h3>
+        <button class="admin-modal-close" id="adminModalClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="admin-modal-body" id="adminModalBody"></div>
+      <div class="admin-modal-footer" id="adminModalFooter"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

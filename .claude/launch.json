@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Pedidos Whats",
+      "runtimeExecutable": "C:\\Users\\Luiz\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "Pedidos Whats"],
+      "port": 5500
+    }
+  ]
+}

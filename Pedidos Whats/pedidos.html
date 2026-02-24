@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedidos Rápidos — Lavve</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="pedidos-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon-wrap"><i class="fas fa-soap"></i></div>
+        <div class="logo-text">
+          <span class="logo-main">Lavve</span>
+          <span class="logo-sub">Produtos de Limpeza</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Início</a></li>
+        <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="index.html#produtos" class="nav-link">Produtos</a></li>
+        <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+        <li><a href="pedidos.html" class="nav-pedidos active"><i class="fas fa-shopping-cart"></i> Fazer Pedido</a></li>
+        <li><a href="admin.html" class="nav-admin"><i class="fas fa-lock"></i> Admin</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div>
+          <h1><i class="fas fa-shopping-cart"></i> Pedidos Rápidos</h1>
+          <p>Selecione os produtos, monte seu carrinho e envie seu pedido direto pelo WhatsApp!</p>
+        </div>
+        <a href="index.html" class="btn btn-outline-white"><i class="fas fa-arrow-left"></i> Voltar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="pedidos-main">
+    <div class="container">
+      <div class="pedidos-layout">
+
+        <!-- PRODUTOS LIST -->
+        <div class="pedidos-produtos">
+          <div class="pedidos-header">
+            <h2>Nossos Produtos</h2>
+            <div class="pedidos-search">
+              <i class="fas fa-search"></i>
+              <input type="text" id="searchInput" placeholder="Buscar produto..." />
+            </div>
+          </div>
+
+          <div class="categoria-filter" id="categoriaFilter">
+            <button class="cat-btn active" data-cat="todos">Todos</button>
+          </div>
+
+          <div class="produtos-lista" id="produtosLista">
+            <!-- Carregado via JS -->
+          </div>
+        </div>
+
+        <!-- CARRINHO -->
+        <aside class="carrinho-panel" id="carrinhoPanel">
+          <div class="carrinho-header">
+            <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
+            <span class="carrinho-count" id="carrinhoCount">0</span>
+          </div>
+
+          <div class="carrinho-empty" id="carrinhoEmpty">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Seu carrinho está vazio</p>
+            <span>Adicione produtos ao lado</span>
+          </div>
+
+          <div class="carrinho-itens" id="carrinhoItens" style="display:none;"></div>
+
+          <div class="carrinho-footer" id="carrinhoFooter" style="display:none;">
+            <div class="carrinho-total">
+              <span>Total do Pedido:</span>
+              <strong id="carrinhoTotal">R$ 0,00</strong>
+            </div>
+
+            <div class="cliente-info">
+              <h4><i class="fas fa-user"></i> Seus Dados</h4>
+              <div class="form-group">
+                <input type="text" id="clienteNome" placeholder="Seu nome completo" />
+              </div>
+              <div class="form-group">
+                <input type="tel" id="clienteTel" placeholder="Seu WhatsApp (XX) XXXXX-XXXX" />
+              </div>
+            </div>
+
+            <button class="btn-finalizar" id="btnFinalizar" onclick="finalizarPedido()">
+              <i class="fab fa-whatsapp"></i> Finalizar pelo WhatsApp
+            </button>
+            <button class="btn-limpar" onclick="limparCarrinho()">
+              <i class="fas fa-trash"></i> Limpar Carrinho
+            </button>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CARRINHO MOBILE TOGGLE -->
+  <button class="carrinho-mobile-toggle" id="carrinhoMobileToggle" onclick="toggleCarrinhoMobile()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="mobileCarrinhoCount">0</span>
+  </button>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5527998376157" class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>

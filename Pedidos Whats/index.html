@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lavve — Produtos de Limpeza</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon-wrap"><i class="fas fa-soap"></i></div>
+        <div class="logo-text">
+          <span class="logo-main">Lavve</span>
+          <span class="logo-sub">Produtos de Limpeza</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" class="nav-link active">Início</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="#produtos" class="nav-link">Produtos</a></li>
+        <li><a href="#diferenciais" class="nav-link">Diferenciais</a></li>
+        <li><a href="#contato" class="nav-link">Contato</a></li>
+        <li><a href="pedidos.html" class="nav-pedidos"><i class="fas fa-shopping-cart"></i> Fazer Pedido</a></li>
+        <li><a href="admin.html" class="nav-admin"><i class="fas fa-lock"></i> Admin</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg">
+      <div class="hero-shape shape1"></div>
+      <div class="hero-shape shape2"></div>
+      <div class="hero-shape shape3"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="hero-tag"><i class="fas fa-certificate"></i> Qualidade Industrial</span>
+        <h1>Limpeza que <span class="highlight">Transforma</span><br/>Ambientes</h1>
+        <p>Produtos de limpeza profissional para indústrias, comércios e residências. Fórmulas poderosas, resultados visíveis e preços de fábrica.</p>
+        <div class="hero-btns">
+          <a href="pedidos.html" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Faça seu Pedido</a>
+          <a href="#produtos" class="btn btn-outline">Ver Produtos</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat">
+            <strong>500+</strong>
+            <span>Clientes Ativos</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <strong>50+</strong>
+            <span>Produtos</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <strong>15 Anos</strong>
+            <span>de Mercado</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-img-wrap">
+            <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80" alt="Produtos Lavve" />
+          </div>
+          <div class="hero-badge badge1">
+            <i class="fas fa-leaf"></i>
+            <span>Eco-Friendly</span>
+          </div>
+          <div class="hero-badge badge2">
+            <i class="fas fa-shield-alt"></i>
+            <span>Certificado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f0f7f4"/></svg>
+    </div>
+  </section>
+
+  <!-- MARCAS / TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-label">Confiado por empresas em todo o ES</p>
+      <div class="trust-items">
+        <div class="trust-item"><i class="fas fa-building"></i> Supermercados</div>
+        <div class="trust-item"><i class="fas fa-hospital"></i> Hospitais</div>
+        <div class="trust-item"><i class="fas fa-hotel"></i> Hotéis</div>
+        <div class="trust-item"><i class="fas fa-industry"></i> Indústrias</div>
+        <div class="trust-item"><i class="fas fa-school"></i> Escolas</div>
+        <div class="trust-item"><i class="fas fa-utensils"></i> Restaurantes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-imgs">
+          <div class="simg-main">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Fabrica Lavve" />
+          </div>
+          <div class="simg-secondary">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Qualidade" />
+          </div>
+          <div class="sobre-badge">
+            <span class="sobre-badge-num">15+</span>
+            <span class="sobre-badge-txt">Anos de Experiência</span>
+          </div>
+        </div>
+        <div class="sobre-text">
+          <p class="section-tag">Sobre a Lavve</p>
+          <h2 class="section-title">Especialistas em <span class="highlight">Limpeza Profissional</span></h2>
+          <p class="sobre-desc">A Lavve é uma indústria capixaba de produtos de limpeza, nascida da visão de oferecer qualidade industrial com preços acessíveis. Desenvolvemos fórmulas exclusivas testadas e aprovadas para os mais exigentes ambientes.</p>
+          <p class="sobre-desc">Nossa linha completa atende desde residências até grandes indústrias, com produtos que aliam eficiência, segurança e responsabilidade ambiental.</p>
+          <div class="sobre-features">
+            <div class="feat"><i class="fas fa-check-circle"></i><span>Fórmulas exclusivas e testadas</span></div>
+            <div class="feat"><i class="fas fa-check-circle"></i><span>Produção própria e controle de qualidade</span></div>
+            <div class="feat"><i class="fas fa-check-circle"></i><span>Entrega para todo o Espírito Santo</span></div>
+            <div class="feat"><i class="fas fa-check-circle"></i><span>Atendimento via WhatsApp</span></div>
+          </div>
+          <a href="pedidos.html" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Fazer Pedido Agora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS DESTAQUE -->
+  <section class="produtos" id="produtos">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Nossa Linha</p>
+        <h2 class="section-title">Produtos em <span class="highlight">Destaque</span></h2>
+        <p class="section-sub">Conheça alguns dos nossos produtos mais vendidos</p>
+      </div>
+      <div class="produtos-grid" id="produtosGrid">
+        <!-- Produtos carregados via JS -->
+      </div>
+      <div class="produtos-cta">
+        <p>Veja todos os produtos e monte seu pedido</p>
+        <a href="pedidos.html" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Ver Todos e Pedir</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="diferenciais" id="diferenciais">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Por que Lavve?</p>
+        <h2 class="section-title">Nossos <span class="highlight">Diferenciais</span></h2>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fas fa-flask"></i></div>
+          <h3>Fórmulas Exclusivas</h3>
+          <p>Desenvolvemos nossas próprias formulações com concentração superior para máxima eficiência.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fas fa-leaf"></i></div>
+          <h3>Eco-Responsável</h3>
+          <p>Produtos biodegradáveis e embalagens sustentáveis, cuidando do planeta enquanto limpamos.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fas fa-tag"></i></div>
+          <h3>Preço de Fábrica</h3>
+          <p>Produção própria significa custos menores repassados diretamente ao nosso cliente.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fas fa-truck"></i></div>
+          <h3>Entrega Rápida</h3>
+          <p>Logística eficiente para atender todo o Espírito Santo com agilidade e segurança.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fas fa-award"></i></div>
+          <h3>Qualidade Certificada</h3>
+          <p>Todos os produtos passam por rigoroso controle de qualidade antes de sair da fábrica.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3>Pedido pelo WhatsApp</h3>
+          <p>Faça seu pedido de forma simples e rápida direto pelo WhatsApp, sem complicação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA PEDIDO -->
+  <section class="cta-pedido">
+    <div class="container">
+      <div class="cta-content">
+        <div class="cta-text">
+          <h2>Pronto para fazer seu pedido?</h2>
+          <p>Monte seu carrinho online e receba a confirmação direto no WhatsApp!</p>
+        </div>
+        <a href="pedidos.html" class="btn btn-white btn-lg">
+          <i class="fas fa-shopping-cart"></i> Fazer Pedido Rápido
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato" id="contato">
+    <div class="container">
+      <div class="contato-grid">
+        <div class="contato-info">
+          <p class="section-tag">Fale Conosco</p>
+          <h2 class="section-title">Entre em <span class="highlight">Contato</span></h2>
+          <p class="contato-desc">Nossa equipe está pronta para atender você. Tire dúvidas, faça pedidos ou conheça melhor nossos produtos.</p>
+          <div class="contato-items">
+            <a href="https://wa.me/5527998376157" class="contato-item" target="_blank">
+              <div class="ci-icon green"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <strong>WhatsApp</strong>
+                <p>(27) 99837-6157</p>
+              </div>
+            </a>
+            <div class="contato-item">
+              <div class="ci-icon blue"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>Localização</strong>
+                <p>Espírito Santo, Brasil</p>
+              </div>
+            </div>
+            <div class="contato-item">
+              <div class="ci-icon orange"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>Horário de Atendimento</strong>
+                <p>Seg–Sex: 8h às 18h | Sáb: 8h às 12h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contato-box">
+          <h3>Envie uma mensagem</h3>
+          <form class="contato-form" id="contatoForm">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Telefone / WhatsApp</label>
+                <input type="tel" placeholder="(XX) XXXXX-XXXX" />
+              </div>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" placeholder="seu@email.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea rows="4" placeholder="Como podemos ajudar?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="nav-logo">
+              <div class="logo-icon-wrap sm"><i class="fas fa-soap"></i></div>
+              <div class="logo-text">
+                <span class="logo-main">Lavve</span>
+                <span class="logo-sub">Produtos de Limpeza</span>
+              </div>
+            </div>
+            <p>Qualidade industrial, preço de fábrica. Cuidando da limpeza do seu negócio há mais de 15 anos.</p>
+            <div class="social-links">
+              <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://wa.me/5527998376157" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Links Rápidos</h4>
+            <ul>
+              <li><a href="#inicio">Início</a></li>
+              <li><a href="#sobre">Sobre</a></li>
+              <li><a href="#produtos">Produtos</a></li>
+              <li><a href="#contato">Contato</a></li>
+              <li><a href="pedidos.html">Fazer Pedido</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Linha de Produtos</h4>
+            <ul>
+              <li><a href="pedidos.html">Amaciantes</a></li>
+              <li><a href="pedidos.html">Detergentes</a></li>
+              <li><a href="pedidos.html">Desinfetantes</a></li>
+              <li><a href="pedidos.html">Lava Louça</a></li>
+              <li><a href="pedidos.html">Água Sanitária</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Contato</h4>
+            <ul>
+              <li><a href="https://wa.me/5527998376157">(27) 99837-6157</a></li>
+              <li><a href="#contato">Enviar Mensagem</a></li>
+              <li><a href="pedidos.html">Pedido Rápido</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 Lavve Produtos de Limpeza. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5527998376157" class="whatsapp-float" target="_blank" title="Fale pelo WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
