@@ -4,7 +4,7 @@
     {
       "name": "Pedidos Whats",
       "runtimeExecutable": "C:\\Users\\Luiz\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
-      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "Pedidos Whats"],
+      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "G:\\Meu Drive\\01 - Netecia Configs\\01 - IA Projetos\\App Netecia\\Pedidos Whats"],
       "port": 5500
     }
   ]

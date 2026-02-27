@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Pagina Conexoes",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5500"],
+      "port": 5500
+    },
+    {
+      "name": "Lavve Pedidos",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5501", "--directory", "G:\\Meu Drive\\01 - Netecia Configs\\01 - IA Projetos\\App Netecia\\Pedidos Whats"],
+      "port": 5501
+    }
+  ]
+}
