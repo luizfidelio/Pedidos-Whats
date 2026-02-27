@@ -17,7 +17,12 @@
       "Bash(git push origin feature/lavve-pedidos)",
       "Bash(gh pr:*)",
       "Bash(dir \"G:\\\\Meu Drive\\\\01 - Netecia Configs\\\\01 - IA Projetos\\\\App Netecia\\\\Pagina de Conexoes\" /b /a)",
-      "Bash(git add index.html centraladm.html .claude/settings.local.json)"
+      "Bash(git add index.html centraladm.html .claude/settings.local.json)",
+      "Bash(git add Site/)",
+      "Bash(where gh)",
+      "Bash(winget list --name \"GitHub CLI\")",
+      "Bash(git remote get-url origin)",
+      "Bash(git add .claude/settings.local.json)"
     ]
   }
 }
