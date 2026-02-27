@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html id="fundogeral">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/popup.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script src="js/personalizado.js"></script>
+        <title>Net e Cia Tecnologia</title>
+
+        <style>
+            /* Botão flutuante de volta ao hub */
+            .btn-hub {
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                background: rgba(10,10,12,0.85);
+                border: 1px solid rgba(172,58,64,0.4);
+                color: #e8e8ec;
+                text-decoration: none;
+                font-size: 0.75rem;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+                font-weight: 600;
+                letter-spacing: 0.06em;
+                padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+                border-radius: 8px;
+                backdrop-filter: blur(8px);
+                transition: background 0.2s, border-color 0.2s, color 0.2s;
+            }
+            .btn-hub:hover {
+                background: rgba(172,58,64,0.18);
+                border-color: rgba(172,58,64,0.7);
+                color: #fff;
+                text-decoration: none;
+            }
+            .btn-hub svg {
+                width: 13px;
+                height: 13px;
+                flex-shrink: 0;
+            }
+        </style>
+    </head>
+
+    <body id="" class="">
+
+        <!-- ── Botão voltar ao Hub Central ── -->
+        <a class="btn-hub" href="../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Central
+        </a>
+
+        <!--topo desktop-->
+        <div class="topo-desk uk-visible@m">
+            <div class="">
+                <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                    <div class="uk-navbar-left uk-margin-large-left">
+                        <img id="logotopo" src="./imagens/logobranca.png" style="width: 160px;">
+                    </div>
+                    <div class="j-uk-navbar-right uk-navbar-right uk-margin-large-right">
+                        <ul class="uk-navbar-nav">
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VÍDEOS</a></li>
+                            <li><p id="bt-contato"><a class="j-topo-desk-uk-button uk-button" href="#rodape" uk-scroll>contato</a></p></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="sec-topo uk-container">
+                <div class="j-topo-grid uk-text-center uk-grid-collapse" uk-grid>
+                    <div class="j-bg-grid-0 uk-width-expand@s">
+                        <div id="fundo-menu-grande" class="uk-card uk-card-default uk-card-body"><p id="p0">Soluções em tecnologia para auxiliar a sua empresa.</p></div>
+                    </div>
+                    <div class="uk-width-1-6@s">
+                        <a href="automacao.html" class="uk-link-toggle"><div class="j-bg-grid-1 uk-card uk-card-default uk-card-body"><p id="p1">AUTOMAÇÃO COMERCIAL</p></div></a>
+                    </div>
+                    <div class="uk-width-1-6@s">
+                        <a href="telefonia.html" class="uk-link-toggle"><div class="j-bg-grid-2 uk-card uk-card-default uk-card-body"><p id="p2">TELEFONIA EM NUVEM</p></div></a>
+                    </div>
+                    <div class="uk-width-1-6@s">
+                        <a href="#" class="uk-link-toggle"><div class="j-bg-grid-3 uk-card uk-card-default uk-card-body"><p id="p3">SERVIDORES</p></div></a>
+                    </div>
+                    <div class="uk-width-1-6@s">
+                        <a href="#" class="uk-link-toggle"><div class="j-bg-grid-4 uk-card uk-card-default uk-card-body"><p id="p4">REDES</p></div></a>
+                    </div>
+                </div>
+            <br>
+            </div>
+        </div>
+
+        <!--topo mobile-->
+        <div class="uk-hidden@m">
+            <div id="barra-topo-mb">
+                <img id="logo-mob" class="uk-position-relative uk-position-center" src="./imagens/logobranca.png">
+                <div id="btMenu" class="btMenuIndex">
+                    <button uk-toggle="target: #my-id" type="button" uk-icon="menu"></button>
+                </div>
+            </div>
+
+            <div id="my-id" uk-offcanvas>
+                <div class="uk-offcanvas-bar">
+                    <button class="uk-offcanvas-close" type="button" uk-close></button>
+                    <nav class="">
+                        <ul class="uk-list">
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VIDEOS</a></li>
+                            <li><a href="index.html#rodape">CONTATO</a></li>
+                            <li><a href="../index.html">← Central</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="uk-container" style="padding: 0px;">
+                <div id="img-mob" class="uk-text-center uk-grid-collapse" uk-grid>
+                    <div id="img-mob0" class="uk-width-1-1@m">
+                        <div id="menu-mob" class="uk-card uk-card-default uk-card-body"><h2 id="h2-img-mob0">Soluções em tecnologia para auxiliar a sua empresa.</h2></div>
+                    </div>
+                    <div id="img-mob1" class="uk-width-1-1@m">
+                        <a href="automacao.html" class="uk-link-toggle"><div id="menu-mob" class="uk-card uk-card-default uk-card-body"><p id="p-img-mob1">Automação Comercial</p></div></a>
+                    </div>
+                    <div id="img-mob2" class="uk-width-1-1@m">
+                        <a href="telefonia.html" class="uk-link-toggle"><div id="menu-mob" class="uk-card uk-card-default uk-card-body"><p id="p-img-mob2">Telefonia em Nuvem</p></div></a>
+                    </div>
+                    <div id="img-mob3" class="uk-width-1-1@m">
+                        <div id="menu-mob" class="uk-card uk-card-default uk-card-body"><p id="p-img-mob3">Servidores</p></div>
+                    </div>
+                    <div id="img-mob4" class="uk-width-1-1@m">
+                        <div id="menu-mob" class="uk-card uk-card-default uk-card-body"><p id="p-img-mob4">Redes</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Rodapé (inline — substituindo <?php include 'rodape.php'; ?>) ── -->
+        <footer>
+            <div id="rodape">
+                <div id="uk-rodape" class="uk-section uk-section-secondary uk-light">
+                    <div class="uk-container">
+                        <h3>Net e Cia Tecnologia</h3>
+                        <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
+                            <div>
+                                <a href="mailto:contato@netecia.com.br"><p>contato@netecia.com.br</p></a>
+                            </div>
+                            <div>
+                                <p>(27)3216-8554</p>
+                            </div>
+                            <div>
+                                <p>CNPJ: 27.547.913/0001-89</p>
+                            </div>
+                            <div>
+                                <a href="https://goo.gl/maps/mopRsJ8ZfCCjyCjy6" target="_blank"><p>Rua Cedro, 26 — Cangaiba, Cariacica-ES — CEP 29158-827</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sociais">
+                        <br>
+                        <hr>
+                        <p>Temos diversas soluções para sua empresa. Entre em contato conosco e tire todas as suas dúvidas.</p>
+                        <a href="http://netecia.com.br/canal" target="_blank" uk-icon="youtube"></a>
+                        <a href="http://facebook.com/netecia" target="_blank" uk-icon="facebook"></a>
+                        <a href="https://instagram.com/netecia.oficial" uk-icon="instagram" target="_blank"></a>
+                        <a href="https://api.whatsapp.com/send?phone=552732168554&text=Site" uk-icon="whatsapp" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="https://api.whatsapp.com/send?phone=552732168554&text=Site" target="_blank">
+                    <img class="whatsapp" src="./imagens/zap_grande.png" />
+                </a>
+            </div>
+            <div>
+                <a id="rolar-cima" href="#" uk-icon="chevron-up" uk-scroll></a>
+            </div>
+        </footer>
+
+    </body>
+</html>
