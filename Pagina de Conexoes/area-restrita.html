@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Área Restrita — Central de Conexões</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f0f0e;
+      --surface:  #1a1a18;
+      --border:   rgba(172,58,64,0.25);
+      --red:      #AC3A40;
+      --red-dark: #7c2429;
+      --red-light:#d94e55;
+      --text:     #f0ede8;
+      --muted:    #9a9890;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── Partículas de fundo ── */
+    #particles {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(172,58,64,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(172,58,64,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ── Card de login ── */
+    .login-card {
+      position: relative; z-index: 10;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.8rem 2.4rem 2.4rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 0 60px rgba(172,58,64,0.08), 0 24px 48px rgba(0,0,0,0.4);
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Logo ── */
+    .login-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.6rem;
+    }
+    .login-logo svg {
+      height: 52px; width: auto;
+      filter: drop-shadow(0 0 18px rgba(172,58,64,0.3));
+    }
+
+    /* ── Título ── */
+    .login-title {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-bottom: 0.4rem;
+    }
+    .login-sub {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Divisor ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Campos ── */
+    .field {
+      margin-bottom: 1.2rem;
+    }
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .field input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(172,58,64,0.2);
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(172,58,64,0.12);
+    }
+    .field input::placeholder { color: rgba(154,152,144,0.5); }
+
+    /* ── Botão ── */
+    .btn-login {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--red);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      margin-top: 0.5rem;
+      position: relative;
+    }
+    .btn-login:hover:not(:disabled) {
+      background: var(--red-light);
+      box-shadow: 0 4px 20px rgba(172,58,64,0.4);
+    }
+    .btn-login:active { transform: scale(0.98); }
+    .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-login .spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-login.loading .btn-text { display: none; }
+    .btn-login.loading .spinner   { display: block; }
+
+    /* ── Mensagem de erro ── */
+    .error-msg {
+      display: none;
+      background: rgba(172,58,64,0.12);
+      border: 1px solid rgba(172,58,64,0.35);
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: var(--red-light);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .error-msg.show { display: block; }
+
+    /* ── Rodapé ── */
+    .login-footer {
+      text-align: center;
+      font-size: 0.68rem;
+      color: rgba(154,152,144,0.5);
+      margin-top: 1.8rem;
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-overlay"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="login-card">
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <svg viewBox="41 44 340 346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Netecia">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M365.47 86.6633L365.33 85.5588L365.197 84.8125L364.983 83.7866L364.688 82.6558L364.354 81.574L363.695 79.8727C362.459 77.053 360.781 74.4627 358.601 72.2775C356.468 70.1482 353.966 68.3818 351.171 67.2453L350.026 66.7854L348.953 66.4066L348.033 66.1327L346.775 65.8201L345.358 65.5542L343.563 65.3488L342.289 65.2803L341.671 65.2723H283.25C270.108 65.2723 259.334 76.0489 259.334 89.2011C259.334 98.7818 265.128 107.434 273.89 111.203L282.263 114.806L192.193 204.907C182.905 214.207 182.905 229.449 192.193 238.745C201.49 248.042 216.731 248.042 226.019 238.745L316.089 148.641L319.69 157.022C323.454 165.785 332.107 171.587 341.688 171.587C354.829 171.587 365.604 160.805 365.604 147.657V89.2011C365.604 88.3636 365.573 87.9471C365.548 87.5226 365.501 87.0924 365.47 86.6633Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M376.531 201.508L328.73 204.857C337.224 264.914 299.08 322.344 240.558 338.032C176.632 355.168 110.077 316.727 92.9483 252.78C75.8192 188.833 114.245 122.248 178.168 105.113C193.696 100.952 210.014 99.9126 225.943 102.119L229.205 54.2824C207.959 51.7537 186.452 53.3467 165.789 58.8902C122.516 70.4883 86.012 98.6117 63.6245 137.407C41.262 176.157 35.1595 221.924 46.7428 265.167C58.3364 308.453 86.4489 344.971 125.229 367.367C163.964 389.739 209.71 395.844 252.939 384.256C333.347 362.702 386.549 284.224 376.53 201.508H376.531Z" fill="#AC3A40"/>
+      </svg>
+    </div>
+
+    <p class="login-title">Central de Conexões</p>
+    <p class="login-sub">Área Restrita</p>
+    <div class="divider"></div>
+
+    <!-- Erro -->
+    <div class="error-msg" id="errorMsg"></div>
+
+    <!-- Formulário -->
+    <form id="loginForm" autocomplete="off">
+      <div class="field">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" placeholder="seu usuário" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn-login" id="btnLogin">
+        <span class="btn-text">Entrar</span>
+        <span class="spinner"></span>
+      </button>
+    </form>
+
+    <p class="login-footer">Net e Cia Tecnologia &mdash; Acesso restrito a colaboradores</p>
+  </div>
+
+  <script>
+    // ── Redireciona se já logado ──
+    (async () => {
+      const token = localStorage.getItem('central_token');
+      if (!token) return;
+      try {
+        const r = await fetch('api/auth.php', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (r.ok) window.location.href = 'admin/index.html';
+      } catch {}
+    })();
+
+    // ── Partículas ──
+    (() => {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let pts = [];
+      const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; initPts(); };
+      const initPts = () => {
+        pts = Array.from({length: 40}, () => ({
+          x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+          vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
+          r: Math.random()*1.5+0.5
+        }));
+      };
+      const draw = () => {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        pts.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x<0||p.x>canvas.width) p.vx*=-1;
+          if (p.y<0||p.y>canvas.height) p.vy*=-1;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle='rgba(172,58,64,0.35)'; ctx.fill();
+        });
+        for (let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+          const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d<120){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+            ctx.strokeStyle=`rgba(172,58,64,${0.06*(1-d/120)})`; ctx.lineWidth=0.6; ctx.stroke(); }
+        }
+        requestAnimationFrame(draw);
+      };
+      window.addEventListener('resize', resize);
+      resize(); draw();
+    })();
+
+    // ── Login ──
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn    = document.getElementById('btnLogin');
+      const errEl  = document.getElementById('errorMsg');
+      const user   = document.getElementById('username').value.trim();
+      const pass   = document.getElementById('password').value;
+
+      errEl.classList.remove('show');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('api/auth.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: user, password: pass })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Credenciais inválidas');
+
+        localStorage.setItem('central_token', data.token);
+        localStorage.setItem('central_user', JSON.stringify(data.user));
+        window.location.href = 'admin/index.html';
+
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.classList.add('show');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>

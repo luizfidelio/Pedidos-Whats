@@ -925,5 +925,71 @@
     </div><!-- fim colunas-layout -->
   </main>
 
+  <script>
+  /* ── Loader de colunas via API (com fallback para HTML hardcoded) ── */
+  (async () => {
+    try {
+      const r = await fetch('api/columns.php');
+      if (!r.ok) return; // fallback silencioso
+
+      const cols = await r.json();
+      if (!Array.isArray(cols) || !cols.length) return;
+
+      const layout = document.querySelector('.colunas-layout');
+      if (!layout) return;
+
+      // Limpa colunas hardcoded
+      layout.innerHTML = '';
+
+      // Ícone de link externo (SVG inline)
+      const linkIcon = `<svg class="card-link-icon" viewBox="0 0 24 24" width="13" height="13" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>`;
+
+      cols.forEach(col => {
+        const cards = (col.cards || []).map((card, ci) => {
+          const favicon = card.favicon_domain
+            ? `https://www.google.com/s2/favicons?domain=${card.favicon_domain}&sz=64`
+            : '';
+          const logoHtml = favicon
+            ? `<img src="${favicon}" alt="${card.name}"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+               <span class="card-logo-fallback" style="display:none">${card.fallback_initials || card.name.substring(0,2).toUpperCase()}</span>`
+            : `<span class="card-logo-fallback">${card.fallback_initials || card.name.substring(0,2).toUpperCase()}</span>`;
+
+          const links = (card.links || []).map((lk, li) => `
+            <a class="card-link" href="${lk.url}" target="_blank" rel="noopener">
+              <span class="card-link-num">${li + 1}</span>
+              <span class="card-link-label">${lk.label}</span>
+              ${linkIcon}
+            </a>`).join('');
+
+          return `
+            <div class="sistema-card">
+              <div class="card-header">
+                <div class="card-logo">${logoHtml}</div>
+                <div>
+                  <div class="card-name">${card.name}</div>
+                  <div class="card-tag">${card.tag || ''}</div>
+                </div>
+              </div>
+              <div class="card-links">${links}</div>
+            </div>`;
+        }).join('');
+
+        layout.innerHTML += `
+          <div class="coluna">
+            <p class="page-title">${col.subtitle || ''}</p>
+            <h1 class="page-heading">${col.title}</h1>
+            <div class="sistemas-grid">${cards}</div>
+          </div>`;
+      });
+
+    } catch { /* fallback silencioso */ }
+  })();
+  </script>
+
 </body>
 </html>
