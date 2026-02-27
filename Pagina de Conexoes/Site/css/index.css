@@ -1,0 +1,278 @@
+@charset UTF-8;
+
+body {
+	background-color: #710606;
+	
+}
+
+#logotopo {
+	z-index: 150;
+}
+
+
+
+/*desktop*/
+div.cabeca {
+	/*margin-top: 20px;*/
+
+}
+
+.uk-navbar-nav>li>a {
+    color: white;
+}
+
+div.j-uk-navbar-right {
+	z-index: 100;
+}
+div.j-uk-navbar-right a{
+	
+}
+#bt-contato {
+	background-color: white;
+	margin-top: 20px;
+	margin-right: 10px;
+	padding: 0px;
+	color: black;
+}
+#bt-contato p {
+	
+
+}
+
+
+div.sec-topo {
+	background-color: #710606;
+	margin-top: -80px;
+	width: 97%;
+	height: 720px;
+
+}
+div.j-topo-grid {
+	background-color: rgba(255, 255, 255, 0);
+
+
+}
+div.j-topo-grid p {
+	margin-top: 270px;
+	color: white;
+	
+}
+
+div.j-bg-grid-0 p{
+	/*background-image: url("../imagens/a.png");*/
+	/*height: 500px;*/
+	font-size: 17pt;
+
+}
+
+div.j-bg-grid-1 {
+	background-image: url("../imagens/a.png");
+	height: 720px;
+	background-size: 100% 100%;
+}
+
+div.j-bg-grid-1:hover {
+	background-image: url("../imagens/a-esc.png");
+	color: white;
+	transition: all 1s;
+}
+div.j-bg-grid-1:hover #p1 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	color: black;
+	background-color: white;
+	
+}
+
+
+div.j-bg-grid-2 {
+	background-image: url("../imagens/b.png");
+	height: 720px;
+	background-size: 100% 100%;
+}
+div.j-bg-grid-2:hover{
+	background-image: url("../imagens/b-esc.png");
+	transition: all 1s;
+	
+}
+div.j-bg-grid-2:hover #p2 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	color: black;
+	background-color: white;
+	
+}
+div.j-bg-grid-3 {
+	background-image: url("../imagens/c.png");
+	height: 720px;
+	background-size: 100% 100%;
+}
+div.j-bg-grid-3:hover{
+	background-image: url("../imagens/c-esc.png");
+	transition: all 1s;
+	
+}
+div.j-bg-grid-3:hover #p3 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	color: black;
+	background-color: white;
+	
+}
+div.j-bg-grid-4 {
+	background-image: url("../imagens/d.png");
+	height: 720px;
+	background-size: 100% 100%;
+}
+div.j-bg-grid-4:hover{
+	background-image: url("../imagens/d-esc.png");
+	transition: all 1s;
+	
+}
+div.j-bg-grid-4:hover #p4 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	color: black;
+	background-color: white;
+	
+}
+
+/*
+.uk-card-default {
+	background-color: rgba(255, 255, 255, 0);
+	color: white;
+	box-shadow: 0 0 0 rgba(0,0,0,0);
+
+}
+*/
+
+#p12 {
+	color: black;
+	background-color: white;
+	font-size: 80pt;
+}
+
+/*mobile*/
+
+
+div#img-mob p {
+	color: white;
+
+
+
+}
+
+
+div#img-mob0 h2 {
+	font-size: 18pt;
+	color: white;
+}
+
+
+
+
+div#img-mob1 {
+	background-image: url("../imagens/a-mob.png");
+	height: 200px;
+	background-size: 100% 100%;
+	/*color: white;*/
+
+}
+div#img-mob1 p {
+	
+	margin-top: 70px;
+	
+}
+div#img-mob1:hover {
+	background-image: url("../imagens/a-mob-esc.png");
+	/*color: white;*/
+	transition: all 1s;
+}
+div#img-mob1:hover #p-img-mob1 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	font-size: 25pt;
+	background-color: rgba(39, 78, 165, .9);
+	
+	
+}
+div#img-mob2 {
+	background-image: url("../imagens/b-mob.png");
+	height: 200px;
+	background-size: 100% 100%;
+	/*color: white;*/
+
+}
+div#img-mob2 p {
+	
+	margin-top: 70px;
+}
+div#img-mob2:hover {
+	background-image: url("../imagens/b-mob-esc.png");
+	/*color: white;*/
+	transition: all 1s;
+}
+div#img-mob2:hover #p-img-mob2 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	font-size: 25pt;
+	background-color: rgba(39, 78, 165, .9);
+	
+	
+}
+div#img-mob3 {
+	background-image: url("../imagens/c-mob.png");
+	height: 200px;
+	background-size: 100% 100%;
+	/*color: white;*/
+
+}
+div#img-mob3 p {
+	
+	margin-top: 70px;
+	
+}
+div#img-mob3:hover {
+	background-image: url("../imagens/c-mob-esc.png");
+	/*color: white;*/
+	transition: all 1s;
+	/*p*/
+}
+div#img-mob3:hover #p-img-mob3 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	font-size: 25pt;
+	background-color: rgba(39, 78, 165, .9);
+	
+}
+div#img-mob4 {
+	background-image: url("../imagens/d-mob.png");
+	height: 200px;
+	background-size: 100% 100%;
+	/*color: white;*/
+
+}
+div#img-mob4 p {
+	
+	margin-top: 70px;
+}
+div#img-mob4:hover {
+	background-image: url("../imagens/d-mob-esc.png");
+	/*color: white;*/
+	transition: all 1s;
+}
+div#img-mob4:hover #p-img-mob4 {/*isso aqui, faz as alteraçõs em "p1", quando passo o mouse pela div pai*/
+	font-size: 25pt;
+	background-color: rgba(39, 78, 165, .9);
+	
+	
+}
+
+#fundo-menu-grande {
+	background-color: unset;
+	box-shadow: none;
+}
+
+/*
+.uk-card-default {
+	background-color: #710606;
+}*/
+
+@media (min-width:  960px) { /*configuração exclusiva p telas maiores que 650px*/
+	.uk-card-default {
+		background-color: #710606;
+	}
+}
+
+@media (max-width:  959px) { /*configuração exclusiva p telas maiores que 650px*/
+	#menu-mob {
+		background-color: rgba(255, 0, 0, 0.0);
+		
+	}
+}

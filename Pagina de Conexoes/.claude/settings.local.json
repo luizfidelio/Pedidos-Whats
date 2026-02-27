@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(powershell.exe -Command \"Get-Content ''G:\\\\Meu Drive\\\\01 - Netecia Configs\\\\LOGO Netecia Vetor\\\\500 x 500 pixels.svg'' -Raw\")",
+      "Bash(powershell.exe -Command:*)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:app.netecia.com.br)",
+      "WebFetch(domain:app.torge.com.br)",
+      "WebFetch(domain:zweb.com.br)",
+      "WebFetch(domain:app.gdoorweb.com.br)",
+      "WebFetch(domain:gdoorweb.com.br)",
+      "Bash(node --version)",
+      "Bash(git add .claude/launch.json .claude/settings.local.json \"Pagina de Conexoes/index.html\" \"Pagina de Conexoes/.claude/launch.json\" \"Pedidos Whats/Projeto no git.txt\")",
+      "Bash(git add \"Pagina de Conexoes/logo-wide.svg\")",
+      "Bash(git commit:*)",
+      "Bash(git push origin feature/lavve-pedidos)",
+      "Bash(gh pr:*)",
+      "Bash(dir \"G:\\\\Meu Drive\\\\01 - Netecia Configs\\\\01 - IA Projetos\\\\App Netecia\\\\Pagina de Conexoes\" /b /a)",
+      "Bash(git add index.html centraladm.html .claude/settings.local.json)"
+    ]
+  }
+}
