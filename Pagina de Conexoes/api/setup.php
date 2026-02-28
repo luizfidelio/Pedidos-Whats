@@ -22,7 +22,7 @@ try {
         username      VARCHAR(50)  UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
         name          VARCHAR(100) NOT NULL,
-        role          ENUM('admin','editor') DEFAULT 'editor',
+        role          ENUM('admin','editor','acesso') DEFAULT 'editor',
         active        TINYINT(1)   DEFAULT 1,
         created_at    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");

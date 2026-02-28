@@ -175,6 +175,34 @@
     }
     .error-msg.show { display: block; }
 
+    /* ── Botão Voltar ── */
+    .btn-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(172,58,64,0.2);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: inherit;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .btn-back svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-back:hover {
+      background: rgba(172,58,64,0.1);
+      border-color: rgba(172,58,64,0.4);
+      color: var(--text);
+    }
+
     /* ── Rodapé ── */
     .login-footer {
       text-align: center;
@@ -189,6 +217,14 @@
 
   <div class="grid-overlay"></div>
   <canvas id="particles"></canvas>
+
+  <!-- Botão Voltar ao Site -->
+  <a href="index.html" class="btn-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Voltar ao site
+  </a>
 
   <div class="login-card">
 
@@ -235,7 +271,11 @@
         const r = await fetch('api/auth.php', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
-        if (r.ok) window.location.href = 'admin/index.html';
+        if (r.ok) {
+          const d = await r.json();
+          const role = d.user?.role ?? '';
+          window.location.href = role === 'acesso' ? 'centraladm.html' : 'admin/index.html';
+        }
       } catch {}
     })();
 
@@ -296,7 +336,8 @@
 
         localStorage.setItem('central_token', data.token);
         localStorage.setItem('central_user', JSON.stringify(data.user));
-        window.location.href = 'admin/index.html';
+        const role = data.user?.role ?? '';
+        window.location.href = role === 'acesso' ? 'centraladm.html' : 'admin/index.html';
 
       } catch (err) {
         errEl.textContent = err.message;

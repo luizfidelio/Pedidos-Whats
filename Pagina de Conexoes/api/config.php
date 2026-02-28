@@ -6,12 +6,12 @@
 // ──────────────────────────────────────────────────────────────
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'central_conexoes');   // nome do banco no seu servidor
-define('DB_USER', 'root');               // usuário do MySQL
-define('DB_PASS', '');                   // senha do MySQL
+define('DB_NAME', 'neteciasite_central');
+define('DB_USER', 'neteciasite_central');
+define('DB_PASS', 'St@rgate1');
 define('DB_CHARSET', 'utf8mb4');
 
-define('JWT_SECRET', 'TROQUE_ESTA_CHAVE_POR_UMA_STRING_LONGA_E_ALEATORIA_32+chars');
+define('JWT_SECRET', 'N3t3c1@S1t3_C3ntr4l_S3cr3t_K3y_2026!xZ9#qW7&mP2');
 define('JWT_EXPIRY', 28800); // 8 horas em segundos
 
 // ── Conexão PDO (singleton) ──────────────────────────────────

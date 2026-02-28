@@ -29,7 +29,7 @@ if ($method === 'POST') {
     $role     = $b['role'] ?? 'editor';
 
     if (!$username || !$password || !$name) send_error('username, password e name são obrigatórios');
-    if (!in_array($role, ['admin','editor'])) send_error('role deve ser admin ou editor');
+    if (!in_array($role, ['admin','editor','acesso'])) send_error('role deve ser admin, editor ou acesso');
     if (strlen($password) < 6) send_error('Senha deve ter ao menos 6 caracteres');
 
     // verifica duplicata
@@ -58,7 +58,7 @@ if ($method === 'PUT') {
         $params[]  = trim($b['name']);
     }
     if (isset($b['role'])) {
-        if (!in_array($b['role'], ['admin','editor'])) send_error('role inválido');
+        if (!in_array($b['role'], ['admin','editor','acesso'])) send_error('role inválido');
         $fields[] = 'role = ?';
         $params[]  = $b['role'];
     }

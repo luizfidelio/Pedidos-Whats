@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redes | Net e Cia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/estilo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+
+        /* ── Botão Hub Central ── */
+        .btn-hub {
+            position: fixed; top: 5.2rem; left: 1rem; z-index: 9999;
+            display: flex; align-items: center; gap: 0.4rem;
+            background: rgba(10,10,12,0.85);
+            border: 1px solid rgba(172,58,64,0.4);
+            color: #e8e8ec; text-decoration: none;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+            padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+            border-radius: 8px; backdrop-filter: blur(8px);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-hub:hover {
+            background: rgba(172,58,64,0.18); border-color: rgba(172,58,64,0.7);
+            color: #fff; text-decoration: none;
+        }
+        .btn-hub svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+        /* ── Hero ── */
+        .hero-redes {
+            position: relative; width: 100%; height: 480px;
+            background: url('./imagens/reuniao.jpg') center / cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero-redes::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(113,6,6,0.88) 0%, rgba(10,20,45,0.90) 100%);
+        }
+        .hero-content {
+            position: relative; z-index: 1;
+            padding: 0 1.5rem; max-width: 760px;
+        }
+        .hero-pill {
+            display: inline-block;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+            color: rgba(255,255,255,0.9); font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            padding: 0.4rem 1.1rem; border-radius: 20px; margin-bottom: 1.2rem;
+        }
+        .hero-content h1 {
+            color: white; font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900; margin: 0 0 1rem;
+            text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.15;
+        }
+        .hero-content p {
+            color: rgba(255,255,255,0.78); font-size: 1.05rem; margin: 0 0 2rem; line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            background: white; color: #710606;
+            padding: 0.8rem 2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .hero-cta:hover {
+            transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #710606; text-decoration: none;
+        }
+        .hero-cta svg { width: 18px; height: 18px; }
+
+        /* ── About ── */
+        .about-section { background: #fff; padding: 5.5rem 1.5rem; }
+        .about-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4.5rem; align-items: center;
+        }
+        @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+        .about-label {
+            display: inline-block; font-size: 0.68rem; font-weight: 800;
+            letter-spacing: 0.2em; text-transform: uppercase; color: #710606; margin-bottom: 0.8rem;
+        }
+        .about-text h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #0f172a;
+            margin: 0 0 1.2rem; line-height: 1.2;
+        }
+        .about-text h2 em { font-style: normal; color: #710606; }
+        .about-text p { color: #475569; font-size: 0.97rem; line-height: 1.85; margin: 0 0 1rem; }
+        .about-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #710606; color: white;
+            padding: 0.75rem 1.8rem; border-radius: 8px;
+            text-decoration: none; font-weight: 700; font-size: 0.9rem;
+            margin-top: 0.5rem; transition: background 0.2s, transform 0.15s;
+        }
+        .about-cta:hover { background: #8b0000; transform: translateY(-2px); color: white; text-decoration: none; }
+        .about-cta svg { width: 16px; height: 16px; fill: none; stroke: white; stroke-width: 2.5; }
+        .about-img-wrap {
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+        }
+
+        /* ── Section Header ── */
+        .sec-header { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+        .sec-label { display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.8rem; }
+        .sec-label--dark { color: #710606; }
+        .sec-header h2 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 900; margin: 0 0 0.75rem; line-height: 1.2; }
+        .sec-header--dark h2 { color: #0f172a; }
+        .sec-header--dark p { color: #64748b; font-size: 0.95rem; margin: 0; }
+
+        /* ── Cards de soluções ── */
+        .solutions-section { background: #f8fafc; padding: 5.5rem 1.5rem; }
+        .solutions-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        @media (max-width: 860px) { .solutions-grid { grid-template-columns: 1fr; max-width: 480px; } }
+        .sol-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column;
+        }
+        .sol-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(0,0,0,0.14); }
+        .sol-card-icon {
+            height: 180px; display: flex; align-items: center; justify-content: center;
+        }
+        .sol-card-icon--home   { background: linear-gradient(135deg, #0f172a 0%, #1e3560 100%); }
+        .sol-card-icon--mikro  { background: linear-gradient(135deg, #1a0a00 0%, #3d0000 100%); }
+        .sol-card-icon--wifi   { background: linear-gradient(135deg, #082014 0%, #0d2a1a 100%); }
+        .sol-card-body { padding: 1.8rem 1.8rem 2.2rem; flex: 1; display: flex; flex-direction: column; }
+        .sol-tag {
+            display: inline-block; background: rgba(113,6,6,0.1); color: #710606;
+            font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+            padding: 0.25rem 0.7rem; border-radius: 4px; margin-bottom: 0.8rem;
+        }
+        .sol-card-body h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 0 0 0.7rem; }
+        .sol-card-body p { font-size: 0.9rem; color: #64748b; line-height: 1.75; margin: 0; flex: 1; }
+        .sol-card-body ul { font-size: 0.88rem; color: #475569; line-height: 1.9; margin: 0.8rem 0 0; padding-left: 1.1rem; }
+        .sol-card-body ul li::marker { color: #710606; }
+
+        /* ── CTA Banner ── */
+        .cta-section {
+            background: linear-gradient(135deg, #710606 0%, #0f172a 100%);
+            padding: 5rem 1.5rem; text-align: center;
+        }
+        .cta-section h2 { color: white; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; margin: 0 0 1rem; }
+        .cta-section p { color: rgba(255,255,255,0.72); font-size: 1rem; margin: 0 auto 2rem; max-width: 560px; }
+        .btn-cta-wa {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: #25D366; color: white;
+            padding: 1rem 2.4rem; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1.05rem;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-cta-wa:hover { background: #1ebe5a; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.5); color: white; text-decoration: none; }
+        .btn-cta-wa svg { width: 26px; height: 26px; }
+
+        /* ── FABs ── */
+        .fab-stack {
+            position: fixed; right: 20px; bottom: 20px; z-index: 10000000;
+            display: flex; flex-direction: column; gap: 12px; align-items: center;
+        }
+        .fab-btn {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.28); text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .fab-btn:hover { transform: translateY(-4px) scale(1.1); box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+        .fab-btn svg { width: 28px; height: 28px; fill: white; }
+        .fab-wa { background: #25D366; }
+        .fab-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+        /* ── Footer override ── */
+        div#uk-rodape { padding-bottom: 40px !important; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Botão voltar ao Hub Central ── -->
+    <a class="btn-hub" href="../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Central
+    </a>
+
+    <!-- ── Cabeçalho ── -->
+    <header>
+        <div class="j-topo-voip-desk uk-visible@m">
+            <div class="cabecamenu">
+                <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                    <div class="uk-navbar-left uk-margin-large-left">
+                        <a href="index.html"><img src="./imagens/logobranca.png" style="width: 160px;"></a>
+                    </div>
+                    <div class="j-menu-uk-navbar-right uk-navbar-right uk-margin-large-right">
+                        <ul class="j-menu-uk-navbar-nav uk-navbar-nav">
+                            <li class="j-item-menu-topo"><a href="index.html">HOME</a></li>
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VÍDEOS</a></li>
+                            <li><p id="bt-contato"><a class="j-topo-desk-uk-button uk-button" href="#rodape" uk-scroll><span class="j-bt-contato">contato</span></a></p></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="j-topo-mob uk-hidden@m">
+            <div id="barra-topo-mb">
+                <a href="index.html"><img id="logo-mob" class="uk-position-relative uk-position-center" src="./imagens/logobranca.png"></a>
+                <div id="btMenu" class="btMenuIndex">
+                    <button uk-toggle="target: #my-id" type="button" uk-icon="menu"></button>
+                </div>
+            </div>
+            <div id="my-id" uk-offcanvas>
+                <div class="uk-offcanvas-bar">
+                    <button class="uk-offcanvas-close" type="button" uk-close></button>
+                    <nav>
+                        <ul class="uk-list">
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VIDEOS</a></li>
+                            <li><a href="index.html#rodape">CONTATO</a></li>
+                            <li><a href="../index.html">← Central</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  HERO                                                   -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="hero-redes">
+        <div class="hero-content">
+            <span class="hero-pill">Net e Cia Tecnologia</span>
+            <h1>Infraestrutura<br>de Redes</h1>
+            <p>Conectividade profissional para Home Office, MikroTik<br>
+               e cobertura WiFi corporativa de alta performance.</p>
+            <a class="hero-cta" href="#solucoes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#710606" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+                Ver soluções
+            </a>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  SOBRE                                                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="about-section">
+        <div class="about-inner">
+            <div class="about-text">
+                <span class="about-label">Conectividade corporativa</span>
+                <h2>Redes estáveis e <em>seguras</em> para o seu time</h2>
+                <p>
+                    Projetamos e implantamos infraestruturas de rede para empresas de todos
+                    os tamanhos. Utilizamos equipamentos MikroTik para roteamento avançado,
+                    controle de banda, firewall e VPN — garantindo segurança e desempenho.
+                </p>
+                <p>
+                    Com a expansão do home office, levamos conectividade profissional para
+                    os colaboradores em qualquer lugar. Configuramos VPNs seguras, acesso
+                    remoto controlado e monitoramento centralizado da rede.
+                </p>
+                <a class="about-cta" href="#rodape" uk-scroll>
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Falar com um especialista
+                </a>
+            </div>
+            <div class="about-img-wrap">
+                <!-- Ilustração: home office + roteador + WiFi + MikroTik -->
+                <svg viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:360px;display:block;background:#0f172a;">
+                    <defs>
+                        <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/>
+                        </linearGradient>
+                        <linearGradient id="screenR" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#1d4ed8"/><stop offset="100%" stop-color="#0f172a"/>
+                        </linearGradient>
+                        <filter id="rglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="rglow2"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <rect width="520" height="360" fill="url(#rg1)"/>
+
+                    <!-- grid -->
+                    <g opacity="0.05" stroke="#60a5fa" stroke-width="0.5">
+                        <line x1="0" y1="72" x2="520" y2="72"/><line x1="0" y1="144" x2="520" y2="144"/>
+                        <line x1="0" y1="216" x2="520" y2="216"/><line x1="0" y1="288" x2="520" y2="288"/>
+                        <line x1="86" y1="0" x2="86" y2="360"/><line x1="172" y1="0" x2="172" y2="360"/>
+                        <line x1="258" y1="0" x2="258" y2="360"/><line x1="344" y1="0" x2="344" y2="360"/>
+                        <line x1="430" y1="0" x2="430" y2="360"/>
+                    </g>
+
+                    <!-- brilhos de fundo -->
+                    <ellipse cx="130" cy="290" rx="130" ry="65" fill="#ac3a40" opacity="0.07"/>
+                    <ellipse cx="400" cy="80"  rx="110" ry="65" fill="#10b981" opacity="0.07"/>
+
+                    <!-- ═══ ROTEADOR MIKROTIK (centro-esquerdo) ═══ -->
+                    <g transform="translate(60,210)">
+                        <!-- corpo roteador -->
+                        <rect x="0" y="0" width="120" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+                        <!-- antenas -->
+                        <line x1="20" y1="0" x2="16" y2="-38" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="60" y1="0" x2="60" y2="-42" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="100" y1="0" x2="104" y2="-38" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="16" cy="-38" r="4" fill="#710606" opacity="0.8"/>
+                        <circle cx="60" cy="-42" r="4" fill="#710606" opacity="0.8"/>
+                        <circle cx="104" cy="-38" r="4" fill="#710606" opacity="0.8"/>
+                        <!-- portas ethernet -->
+                        <rect x="10" y="10" width="14" height="10" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="28" y="10" width="14" height="10" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="46" y="10" width="14" height="10" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="64" y="10" width="14" height="10" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="82" y="10" width="14" height="10" rx="2" fill="#0f172a" stroke="#ac3a40" stroke-width="1.5"/>
+                        <!-- WAN port destaque -->
+                        <text x="89" y="7" font-family="Arial" font-size="6" fill="#ac3a40" text-anchor="middle">WAN</text>
+                        <!-- LEDs -->
+                        <circle cx="10"  cy="30" r="3" fill="#22c55e" filter="url(#rglow2)"/>
+                        <circle cx="20"  cy="30" r="3" fill="#22c55e" filter="url(#rglow2)"/>
+                        <circle cx="30"  cy="30" r="3" fill="#22c55e" filter="url(#rglow2)"/>
+                        <circle cx="40"  cy="30" r="3" fill="#22c55e" filter="url(#rglow2)"/>
+                        <circle cx="50"  cy="30" r="3" fill="#f59e0b" filter="url(#rglow2)"/>
+                        <circle cx="60"  cy="30" r="3" fill="#22c55e" filter="url(#rglow2)"/>
+                        <!-- label MikroTik -->
+                        <rect x="76" y="24" width="38" height="14" rx="3" fill="#ac3a40" opacity="0.9"/>
+                        <text x="95" y="34" font-family="Arial" font-size="7" fill="white" text-anchor="middle" font-weight="bold">MikroTik</text>
+                    </g>
+
+                    <!-- ═══ SINAIS WIFI (emanando do roteador) ═══ -->
+                    <g transform="translate(120,195)" opacity="0.7">
+                        <path d="M0,0 Q-20,-40 0,-80" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M0,0 Q-35,-40 0,-95" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M0,0 Q-50,-40 0,-115" fill="none" stroke="#10b981" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+                    </g>
+                    <g transform="translate(120,195)" opacity="0.7">
+                        <path d="M0,0 Q20,-40 0,-80" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M0,0 Q35,-40 0,-95" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M0,0 Q50,-40 0,-115" fill="none" stroke="#10b981" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+                    </g>
+
+                    <!-- ═══ HOME OFFICE (pessoa + notebook) ═══ -->
+                    <!-- Mesa -->
+                    <rect x="230" y="240" width="180" height="10" rx="5" fill="#334155"/>
+                    <rect x="246" y="250" width="148" height="5" rx="2.5" fill="#1e293b"/>
+                    <!-- pernas da mesa -->
+                    <rect x="246" y="254" width="8" height="40" rx="3" fill="#334155"/>
+                    <rect x="386" y="254" width="8" height="40" rx="3" fill="#334155"/>
+
+                    <!-- Notebook: tela -->
+                    <rect x="258" y="158" width="124" height="82" rx="7" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+                    <rect x="264" y="164" width="112" height="70" rx="4" fill="url(#screenR)"/>
+                    <!-- conteúdo tela -->
+                    <rect x="270" y="170" width="50" height="5" rx="2" fill="white" opacity="0.6"/>
+                    <rect x="270" y="178" width="70" height="3" rx="1.5" fill="white" opacity="0.3"/>
+                    <rect x="270" y="184" width="55" height="3" rx="1.5" fill="white" opacity="0.3"/>
+                    <rect x="270" y="190" width="40" height="3" rx="1.5" fill="white" opacity="0.3"/>
+                    <!-- gráfico mini -->
+                    <polyline points="328,218 338,208 348,213 358,202 368,207" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- WiFi icon na tela -->
+                    <g transform="translate(344,176)" opacity="0.9">
+                        <path d="M-14,8 Q0,-8 14,8" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M-9,13 Q0,4 9,13" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="0" cy="17" r="2.5" fill="#10b981"/>
+                    </g>
+                    <!-- Notebook: base teclado -->
+                    <rect x="250" y="240" width="140" height="6" rx="3" fill="#334155"/>
+                    <rect x="258" y="238" width="124" height="4" rx="2" fill="#1e293b"/>
+
+                    <!-- Avatar pessoa -->
+                    <!-- corpo -->
+                    <rect x="288" y="202" width="64" height="40" rx="12" fill="#1d4ed8"/>
+                    <!-- cabeça -->
+                    <ellipse cx="320" cy="192" rx="22" ry="24" fill="#fde68a"/>
+                    <!-- cabelo -->
+                    <ellipse cx="320" cy="175" rx="22" ry="11" fill="#1e293b"/>
+                    <rect x="298" y="173" width="44" height="8" rx="4" fill="#1e293b"/>
+                    <!-- óculos -->
+                    <rect x="306" y="191" width="10" height="7" rx="3" fill="none" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="322" y="191" width="10" height="7" rx="3" fill="none" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="316" y1="194" x2="322" y2="194" stroke="#475569" stroke-width="1.5"/>
+                    <!-- nariz + sorriso -->
+                    <circle cx="320" cy="200" r="1.5" fill="#d97706"/>
+                    <path d="M312 206 Q320 211 328 206" stroke="#92400e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <!-- headset -->
+                    <path d="M298 185 Q298 172 320 172 Q342 172 342 185" stroke="#334155" stroke-width="2.5" fill="none"/>
+                    <rect x="294" y="182" width="8" height="12" rx="4" fill="#475569"/>
+                    <rect x="338" y="182" width="8" height="12" rx="4" fill="#475569"/>
+
+                    <!-- ═══ DISPOSITIVOS CONECTADOS (direita) ═══ -->
+                    <!-- Smartphone -->
+                    <rect x="435" y="175" width="46" height="75" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="440" y="182" width="36" height="55" rx="4" fill="#0f172a"/>
+                    <rect x="440" y="182" width="36" height="55" rx="4" fill="url(#screenR)" opacity="0.6"/>
+                    <circle cx="458" cy="245" r="4" fill="#334155"/>
+                    <!-- WiFi icon no celular -->
+                    <g transform="translate(458,204)" opacity="0.9">
+                        <path d="M-9,5 Q0,-5 9,5" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M-5,9 Q0,3 5,9" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="0" cy="12" r="2" fill="#10b981"/>
+                    </g>
+                    <!-- Tablet -->
+                    <rect x="430" y="90" width="70" height="56" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="435" y="96" width="60" height="44" rx="3" fill="#0f172a"/>
+                    <rect x="435" y="96" width="60" height="44" rx="3" fill="url(#screenR)" opacity="0.5"/>
+                    <!-- WiFi icon no tablet -->
+                    <g transform="translate(465,118)" opacity="0.9">
+                        <path d="M-10,6 Q0,-6 10,6" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M-6,11 Q0,2 6,11" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="0" cy="14" r="2" fill="#10b981"/>
+                    </g>
+
+                    <!-- ═══ LINHAS DE CONEXÃO ═══ -->
+                    <!-- roteador → notebook -->
+                    <path d="M180 220 Q220 210 258 222" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.7"/>
+                    <!-- notebook → smartphone -->
+                    <path d="M380 205 Q420 195 435 220" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.6"/>
+                    <!-- roteador → tablet -->
+                    <path d="M180 215 Q320 80 430 118" stroke="#10b981" stroke-width="1.2" stroke-dasharray="5 4" fill="none" opacity="0.4"/>
+                    <!-- pontos de conexão -->
+                    <circle cx="180" cy="220" r="4" fill="#10b981" filter="url(#rglow2)"/>
+                    <circle cx="380" cy="205" r="4" fill="#10b981" filter="url(#rglow2)"/>
+
+                    <!-- ═══ MÉTRICAS FLUTUANTES ═══ -->
+                    <!-- ping -->
+                    <rect x="28" y="30" width="100" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+                    <text x="42" y="45" font-family="Arial" font-size="7" fill="#94a3b8">PING</text>
+                    <text x="42" y="58" font-family="Arial" font-size="10" fill="#10b981" font-weight="bold">&lt; 5 ms</text>
+                    <!-- dispositivos conectados -->
+                    <rect x="200" y="40" width="130" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+                    <text x="214" y="55" font-family="Arial" font-size="7" fill="#94a3b8">DISPOSITIVOS</text>
+                    <text x="214" y="68" font-family="Arial" font-size="10" fill="#f59e0b" font-weight="bold">12 conectados</text>
+                    <!-- VPN status -->
+                    <rect x="370" y="280" width="120" height="34" rx="8" fill="#0d2515" stroke="#22c55e" stroke-width="1" opacity="0.9"/>
+                    <text x="384" y="295" font-family="Arial" font-size="7" fill="#4ade80">VPN ATIVA</text>
+                    <text x="384" y="308" font-family="Arial" font-size="9" fill="#22c55e" font-weight="bold">🔒 Criptografado</text>
+
+                    <!-- badge rodapé -->
+                    <rect x="100" y="322" width="320" height="26" rx="13" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+                    <text x="260" y="339" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle" letter-spacing="1">HOME OFFICE · MIKROTIK · WIFI · VPN · FIREWALL</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  SOLUÇÕES                                              -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="solutions-section" id="solucoes">
+        <div class="sec-header sec-header--dark">
+            <span class="sec-label sec-label--dark">O que oferecemos</span>
+            <h2>Conectividade para cada realidade</h2>
+            <p>Soluções de rede completas, do roteamento avançado à cobertura WiFi corporativa.</p>
+        </div>
+        <div class="solutions-grid">
+
+            <!-- Card 1: Home Office -->
+            <div class="sol-card">
+                <div class="sol-card-icon sol-card-icon--home">
+                    <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:80px;">
+                        <!-- casa -->
+                        <polygon points="60,12 16,44 26,44 26,76 94,76 94,44 104,44" fill="#1e3560" stroke="#60a5fa" stroke-width="1.5"/>
+                        <!-- janela -->
+                        <rect x="36" y="50" width="20" height="20" rx="2" fill="#0f172a" stroke="#60a5fa" stroke-width="1"/>
+                        <line x1="36" y1="60" x2="56" y2="60" stroke="#60a5fa" stroke-width="1"/>
+                        <line x1="46" y1="50" x2="46" y2="70" stroke="#60a5fa" stroke-width="1"/>
+                        <!-- porta -->
+                        <rect x="64" y="58" width="18" height="18" rx="2" fill="#0f172a" stroke="#60a5fa" stroke-width="1"/>
+                        <!-- WiFi ícone no teto -->
+                        <g transform="translate(60,30)" opacity="0.9">
+                            <path d="M-8,4 Q0,-5 8,4" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M-4,8 Q0,2 4,8" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="0" cy="11" r="2" fill="#10b981"/>
+                        </g>
+                        <text x="60" y="86" font-family="Arial" font-size="8" fill="#60a5fa" text-anchor="middle" font-weight="bold">HOME OFFICE</text>
+                    </svg>
+                </div>
+                <div class="sol-card-body">
+                    <span class="sol-tag">Home Office</span>
+                    <h3>Trabalho Remoto Seguro</h3>
+                    <p>Configuramos toda a infraestrutura necessária para equipes em home office, com conectividade estável e segura como no escritório.</p>
+                    <ul>
+                        <li>VPN corporativa criptografada</li>
+                        <li>Acesso remoto controlado</li>
+                        <li>Qualidade de voz em chamadas VoIP</li>
+                        <li>Suporte técnico remoto dedicado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2: MikroTik -->
+            <div class="sol-card">
+                <div class="sol-card-icon sol-card-icon--mikro">
+                    <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:80px;">
+                        <!-- roteador -->
+                        <rect x="20" y="35" width="80" height="30" rx="6" fill="#2a0a0a" stroke="#ac3a40" stroke-width="1.5"/>
+                        <!-- antenas -->
+                        <line x1="38" y1="35" x2="32" y2="6" stroke="#710606" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="60" y1="35" x2="60" y2="3" stroke="#710606" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="82" y1="35" x2="88" y2="6" stroke="#710606" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="32" cy="6"  r="4" fill="#ac3a40"/>
+                        <circle cx="60" cy="3"  r="4" fill="#ac3a40"/>
+                        <circle cx="88" cy="6"  r="4" fill="#ac3a40"/>
+                        <!-- portas -->
+                        <rect x="28" y="42" width="12" height="8" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="44" y="42" width="12" height="8" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="60" y="42" width="12" height="8" rx="2" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+                        <rect x="76" y="42" width="12" height="8" rx="2" fill="#0f172a" stroke="#ac3a40" stroke-width="1.5"/>
+                        <!-- LEDs -->
+                        <circle cx="32" cy="56" r="3" fill="#22c55e"/>
+                        <circle cx="44" cy="56" r="3" fill="#22c55e"/>
+                        <circle cx="56" cy="56" r="3" fill="#22c55e"/>
+                        <circle cx="68" cy="56" r="3" fill="#f59e0b"/>
+                        <circle cx="80" cy="56" r="3" fill="#22c55e"/>
+                        <text x="60" y="80" font-family="Arial" font-size="8" fill="#ac3a40" text-anchor="middle" font-weight="bold">MikroTik RouterOS</text>
+                    </svg>
+                </div>
+                <div class="sol-card-body">
+                    <span class="sol-tag">MikroTik</span>
+                    <h3>Roteamento com MikroTik</h3>
+                    <p>Implantamos e configuramos equipamentos MikroTik para redes corporativas, com gerenciamento avançado e total controle do tráfego.</p>
+                    <ul>
+                        <li>Firewall e controle de acesso</li>
+                        <li>Gerenciamento de banda (QoS)</li>
+                        <li>VPN L2TP / IPSec / OpenVPN</li>
+                        <li>Balanceamento de links</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3: WiFi -->
+            <div class="sol-card">
+                <div class="sol-card-icon sol-card-icon--wifi">
+                    <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:80px;">
+                        <!-- ondas WiFi grandes -->
+                        <path d="M60,58 Q60,58 60,58" fill="none"/>
+                        <path d="M22,38 Q60,8 98,38" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+                        <path d="M32,48 Q60,22 88,48" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M42,58 Q60,38 78,58" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+                        <circle cx="60" cy="66" r="6" fill="#10b981"/>
+                        <!-- access point no topo -->
+                        <rect x="42" y="6" width="36" height="16" rx="4" fill="#082014" stroke="#10b981" stroke-width="1.5"/>
+                        <circle cx="54" cy="14" r="3" fill="#22c55e"/>
+                        <circle cx="66" cy="14" r="3" fill="#22c55e" opacity="0.5"/>
+                        <line x1="60" y1="22" x2="60" y2="38" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.6"/>
+                        <text x="60" y="84" font-family="Arial" font-size="8" fill="#10b981" text-anchor="middle" font-weight="bold">WIFI CORPORATIVO</text>
+                    </svg>
+                </div>
+                <div class="sol-card-body">
+                    <span class="sol-tag">WiFi</span>
+                    <h3>Infraestrutura WiFi Corporativa</h3>
+                    <p>Projeto e implantação de redes WiFi de alta performance com cobertura total, ideal para escritórios, lojas, armazéns e galpões.</p>
+                    <ul>
+                        <li>Cobertura sem pontos cegos</li>
+                        <li>Múltiplos Access Points (AP)</li>
+                        <li>Rede separada para visitantes</li>
+                        <li>Monitoramento e suporte contínuo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  CTA                                                    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="cta-section">
+        <h2>Sua rede merece atenção profissional!</h2>
+        <p>Fale com nossa equipe e solicite um diagnóstico gratuito da sua infraestrutura de rede.</p>
+        <a class="btn-cta-wa"
+           href="https://api.whatsapp.com/send?phone=552732168554&text=Te%20encontrei%20pelo%20site%2C%20gostaria%20de%20um%20or%C3%A7amento!"
+           target="_blank">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="16" fill="#25D366"/>
+                <path d="M23.5 20.5c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-.95 1.2-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.7-1.68-.95-2.3-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.02 1-.02 2.97 1 1.97 1.97 2.85 3.8 4.27 1.82 1.42 1.82 1 2.15 1.05.32.05 1.05-.43 1.2-.85.15-.42.15-.78.1-.85-.05-.07-.2-.12-.5-.27z" fill="white"/>
+            </svg>
+            Solicitar orçamento pelo WhatsApp
+        </a>
+    </section>
+
+    <!-- ── FABs ── -->
+    <div class="fab-stack">
+        <a class="fab-btn fab-ig" href="https://instagram.com/netecia.oficial" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a class="fab-btn fab-wa" href="https://api.whatsapp.com/send?phone=552732168554&text=Te%20encontrei%20pelo%20site%2C%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+    </div>
+
+    <!-- ── Rodapé ── -->
+    <footer>
+        <div id="rodape">
+            <div id="uk-rodape" class="uk-section uk-section-secondary uk-light">
+                <div class="uk-container">
+                    <h3>Net e Cia Tecnologia</h3>
+                    <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
+                        <div><a href="mailto:contato@netecia.com.br"><p>contato@netecia.com.br</p></a></div>
+                        <div><p>(27)3216-8554</p></div>
+                        <div><p>CNPJ: 58.377.040/0001-37</p></div>
+                        <div>
+                            <a href="https://maps.google.com/?q=Rua+Cama%C3%A7ari,+342,+Cariacica,+ES" target="_blank">
+                                <p>Rua Camaçari, 342 Ap 301 — Cariacica, ES — CEP 29147-517</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="sociais">
+                    <br><hr>
+                    <p>Temos diversas soluções para sua empresa. Entre em contato conosco e tire todas as suas dúvidas.</p>
+                    <a href="http://netecia.com.br/canal" target="_blank" uk-icon="youtube"></a>
+                    <a href="http://facebook.com/netecia" target="_blank" uk-icon="facebook"></a>
+                    <a href="https://instagram.com/netecia.oficial" uk-icon="instagram" target="_blank"></a>
+                    <a href="https://api.whatsapp.com/send?phone=552732168554&text=Site" uk-icon="whatsapp" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

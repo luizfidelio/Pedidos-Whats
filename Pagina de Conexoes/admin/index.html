@@ -43,7 +43,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
+    transition: opacity 0.15s;
   }
+  .sidebar-logo:hover { opacity: 0.75; }
   .sidebar-logo svg { width: 32px; height: 32px; flex-shrink: 0; }
   .sidebar-logo-text { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
   .sidebar-logo-text span { display: block; font-weight: 400; color: var(--text-muted); font-size: 11px; }
@@ -113,6 +116,7 @@
   }
   .badge--admin { background: rgba(172,58,64,0.22); color: var(--red-light); border: 1px solid rgba(172,58,64,0.35); }
   .badge--editor { background: rgba(255,255,255,0.07); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge--acesso { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
 
   /* ── Page body ── */
   .page-body { padding: 28px; flex: 1; }
@@ -217,13 +221,13 @@
 <div class="layout">
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
+    <a href="../index.html" class="sidebar-logo" title="Ir para a Central">
       <svg viewBox="41 44 340 346" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M365.47 86.6633L365.33 85.5588L365.197 84.8125L364.983 83.7866L364.688 82.6558L364.354 81.574L363.695 79.8727C362.459 77.053 360.781 74.4627 358.601 72.2775C356.468 70.1482 353.966 68.3818 351.171 67.2453L350.026 66.7854L348.953 66.4066L348.033 66.1327L346.775 65.8201L345.358 65.5542L343.563 65.3488L342.289 65.2803L341.671 65.2723H283.25C270.108 65.2723 259.334 76.0489 259.334 89.2011C259.334 98.7818 265.128 107.434 273.89 111.203L282.263 114.806L192.193 204.907C182.905 214.207 182.905 229.449 192.193 238.745C201.49 248.042 216.731 248.042 226.019 238.745L316.089 148.641L319.69 157.022C323.454 165.785 332.107 171.587 341.688 171.587C354.829 171.587 365.604 160.805 365.604 147.657V89.2011C365.604 88.3636 365.573 87.9471 365.548 87.5226 365.501 87.0924 365.47 86.6633Z" fill="#AC3A40"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M376.531 201.508L328.73 204.857C337.224 264.914 299.08 322.344 240.558 338.032C176.632 355.168 110.077 316.727 92.9483 252.78C75.8192 188.833 114.245 122.248 178.168 105.113C193.696 100.952 210.014 99.9126 225.943 102.119L229.205 54.2824C207.959 51.7537 186.452 53.3467 165.789 58.8902C122.516 70.4883 86.012 98.6117 63.6245 137.407C41.262 176.157 35.1595 221.924 46.7428 265.167C58.3364 308.453 86.4489 344.971 125.229 367.367C163.964 389.739 209.71 395.844 252.939 384.256C333.347 362.702 386.549 284.224 376.53 201.508H376.531Z" fill="#AC3A40"/>
       </svg>
       <div class="sidebar-logo-text">Netecia<span>Central de Conexões</span></div>
-    </div>
+    </a>
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -240,6 +244,10 @@
       <a href="users.html" class="nav-item nav-item--admin">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Usuários
+      </a>
+      <a href="../centraladm.html" class="nav-item" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver Central ADM
       </a>
     </nav>
     <button class="btn-logout" id="btnLogout">
@@ -311,6 +319,8 @@ async function checkAuth() {
     if (!res.ok) throw new Error();
     const data = await res.json();
     currentUser = data.user;
+    // Usuário de acesso só vê centraladm.html
+    if (currentUser.role === 'acesso') { window.location.href = '../centraladm.html'; return; }
     renderUser();
     if (currentUser.role === 'admin') {
       document.querySelectorAll('.nav-item--admin').forEach(el => el.style.display = 'flex');
@@ -325,7 +335,8 @@ async function checkAuth() {
 function renderUser() {
   document.getElementById('userName').textContent = currentUser.name;
   const badge = document.getElementById('userBadge');
-  badge.textContent = currentUser.role === 'admin' ? 'Admin' : 'Editor';
+  const roleLabel = { admin: 'Admin', editor: 'Editor', acesso: 'Acesso' };
+  badge.textContent = roleLabel[currentUser.role] ?? currentUser.role;
   badge.className = 'badge badge--' + currentUser.role;
 }
 
