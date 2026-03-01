@@ -22,7 +22,31 @@
       "Bash(where gh)",
       "Bash(winget list --name \"GitHub CLI\")",
       "Bash(git remote get-url origin)",
-      "Bash(git add .claude/settings.local.json)"
+      "Bash(git add .claude/settings.local.json)",
+      "Bash(git fetch netecia)",
+      "Bash(git push netecia feature/lavve-pedidos)",
+      "Bash(git branch main ffec506)",
+      "Bash(git push netecia main)",
+      "Bash(git branch -d main)",
+      "Bash(git add index.html Site/index.html Site/automacao.html Site/telefonia.html)",
+      "Bash(git add .htaccess Site/.htaccess)",
+      "Bash(git add index.html)",
+      "Bash(git add index.html centraladm.html area-restrita.html admin/ api/)",
+      "Bash(where git)",
+      "Bash(dir \"G:\\\\Meu Drive\\\\01 - Netecia Configs\\\\01 - IA Projetos\\\\App Netecia\\\\Pagina de Conexoes\\\\Site\\\\imagens\" /b)",
+      "Bash(curl -s -I \"https://www.torge.com.br\")",
+      "Bash(curl -s -I \"https://torge.com.br\")",
+      "Bash(curl -s -I \"https://www.zweb.com.br\")",
+      "Bash(curl -s -I \"https://zweb.com.br\")",
+      "Bash(curl -s \"https://www.torge.com.br\")",
+      "Bash(curl -s \"https://zweb.com.br\")",
+      "WebFetch(domain:www.torge.com.br)",
+      "Bash(curl -s -I \"https://www.torge.com.br/assets/images/LogoTorgeBranco.png\")",
+      "Bash(curl -s -I \"https://zweb.com.br/media/dark/images/zweb-horizontal.png\")",
+      "Bash(where python)",
+      "Bash(where python3)",
+      "Bash(where npx)",
+      "Bash(npx --version)"
     ]
   }
 }
