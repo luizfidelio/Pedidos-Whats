@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloads — Net e Cia</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #AC3A40;
+      --red-light:#d94e55;
+      --red-dark: #7c2429;
+      --dark:     #4C4D48;
+      --bg:       #0f0f0e;
+      --surface:  #1a1a18;
+      --surface2: #242422;
+      --text:     #f0ede8;
+      --muted:    #9a9890;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Particles canvas ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Grid overlay ── */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(172,58,64,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(172,58,64,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid rgba(172,58,64,0.15);
+      backdrop-filter: blur(8px);
+      background: rgba(15,15,14,0.8);
+    }
+
+    .header-logo { display: flex; align-items: center; text-decoration: none; }
+    .header-logo svg { height: 32px; width: auto; display: block; }
+
+    .header-badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(172,58,64,0.35);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+    }
+
+    .nav-btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(172,58,64,0.1);
+      border: 1px solid rgba(172,58,64,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .nav-btn-back svg { width: 13px; height: 13px; }
+    .nav-btn-back:hover {
+      background: rgba(172,58,64,0.2);
+      border-color: rgba(172,58,64,0.55);
+      color: var(--red-light);
+    }
+
+    /* ── Hero intro ── */
+    .hero {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red-light);
+    }
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--white);
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    /* ── Category filter tabs ── */
+    .filter-bar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 0 2rem 2.5rem;
+    }
+    .filter-btn {
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: 1px solid rgba(172,58,64,0.25);
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(172,58,64,0.5); }
+    .filter-btn.active {
+      background: rgba(172,58,64,0.18);
+      border-color: rgba(172,58,64,0.5);
+      color: var(--red-light);
+    }
+
+    /* ── Downloads grid ── */
+    .downloads-section {
+      position: relative;
+      z-index: 5;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .cat-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .cat-label-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .cat-label-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(172,58,64,0.25), transparent);
+    }
+
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Download card ── */
+    .dl-card {
+      background: var(--surface);
+      border: 1px solid rgba(172,58,64,0.18);
+      border-radius: 16px;
+      padding: 1.4rem 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+      cursor: pointer;
+    }
+    .dl-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(172,58,64,0.06) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: inherit;
+    }
+    .dl-card:hover {
+      border-color: rgba(172,58,64,0.45);
+      box-shadow: 0 0 0 4px rgba(172,58,64,0.07), 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .dl-card:hover::before { opacity: 1; }
+
+    /* Pulse dot (like conn-btn) */
+    .dl-pulse {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 6px var(--red);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.65); }
+    }
+
+    .dl-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(172,58,64,0.1);
+      border: 1px solid rgba(172,58,64,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .dl-card:hover .dl-icon {
+      background: rgba(172,58,64,0.18);
+      border-color: rgba(172,58,64,0.38);
+    }
+    .dl-icon svg { width: 24px; height: 24px; color: var(--red-light); }
+
+    .dl-info { flex: 1; }
+    .dl-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .dl-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .dl-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.25rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .dl-cat-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(172,58,64,0.15);
+      border: 1px solid rgba(172,58,64,0.3);
+      color: var(--red-light);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .dl-btn svg { width: 13px; height: 13px; }
+    .dl-card:hover .dl-btn {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(172,58,64,0.4);
+    }
+
+    /* ── Empty / loading ── */
+    .state-box {
+      text-align: center;
+      padding: 5rem 2rem;
+      color: var(--muted);
+    }
+    .state-box svg {
+      width: 52px; height: 52px;
+      opacity: 0.2;
+      margin-bottom: 1rem;
+    }
+    .state-box p { font-size: 1rem; }
+    .spin { animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Stats bar ── */
+    .stats {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid rgba(172,58,64,0.1);
+      border-bottom: 1px solid rgba(172,58,64,0.1);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--red-light);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+    footer strong { color: var(--red-light); }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--dark); border-radius: 3px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      header { padding: 1rem 1.25rem; }
+      .header-badge { display: none; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .downloads-section { padding: 0 1.25rem 4rem; }
+      .downloads-grid { grid-template-columns: 1fr; }
+      .stats { gap: 2.5rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+  <div class="grid-overlay"></div>
+
+  <!-- ── Header ── -->
+  <header>
+    <a class="header-logo" href="../index.html" title="Central de Conexões">
+      <!-- Logo wide (mesma do hub) -->
+      <svg viewBox="41 44 1711 346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Netecia" height="32">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M645.148 341.171C650.933 341.171 655.625 336.479 655.625 330.691C655.625 329.922 655.539 329.175 655.384 328.454V213.016C655.384 178.855 646.396 151.801 628.339 131.855C610.287 111.915 586.101 101.945 555.79 101.945C525.479 101.945 501.293 111.916 483.077 131.855C464.856 151.801 455.792 178.851 455.792 213.016V330.691C455.792 336.479 460.483 341.171 466.269 341.171H487.223C493.009 341.171 497.696 336.479 497.699 330.691V205.416C497.699 186.866 503.172 171.743 514.126 160.134C524.989 148.451 538.959 142.65 555.789 142.65C572.862 142.65 586.834 148.451 597.538 160.134C608.32 171.745 613.715 186.863 613.715 205.416V330.691C613.715 336.479 618.406 341.171 624.192 341.171H645.145H645.148Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1026.39 311.009L1026.38 311.137V330.927L1026.39 331.121C1026.39 336.428 1022.27 340.777 1017.05 341.146L1017.03 341.171H1016.34H1012.49C979.323 341.171 954.407 333.898 937.904 319.347C921.402 304.881 913.147 282.979 913.147 253.802V54.546V54.4776C913.186 48.6854 917.885 44.0012 923.686 44.0012H923.689H944.764C950.588 44.0012 955.301 48.7196 955.306 54.5426V54.5472V106.279H1016.46C1021.94 106.283 1026.38 110.722 1026.38 116.206V116.211V136.069C1026.38 141.551 1021.94 145.997 1016.46 146H955.306V246.608C955.306 265.406 959.881 279.22 969.031 287.884C978.265 296.631 992.887 300.959 1012.99 300.959H1016.34C1021.82 300.959 1026.28 305.356 1026.38 310.817V310.881L1026.39 311.01Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1271.63 250.273C1264.76 277.709 1252.11 299.874 1233.69 316.813C1212.45 336.268 1186.63 345.994 1156.16 345.994C1145.79 345.994 1135.57 344.603 1125.44 341.821C1115.31 339.047 1105.75 334.872 1096.77 329.484C1077.97 317.956 1063.35 302.919 1052.98 284.451C1042.6 265.892 1037.45 245.545 1037.45 223.398C1037.45 207.051 1040.48 191.602 1046.44 176.892C1052.4 162.177 1061.07 148.939 1072.42 137.169C1083.7 125.482 1096.6 116.655 1111.06 110.527C1125.44 104.477 1140.64 101.454 1156.66 101.454C1180.34 101.454 1201.67 107.749 1220.38 120.252C1236.61 131.098 1250.19 146.311 1261.13 165.779C1263.68 171.22 1261.89 177.115 1257.14 179.858L1151.63 237.707C1146.62 240.606 1140.21 238.885 1137.32 233.874L1130 220.77L1129.75 220.361C1126.86 215.351 1128.58 208.941 1133.59 206.046L1208.53 164.632C1201.5 156.866 1193.58 150.901 1184.84 146.9C1176.1 142.889 1166.53 140.93 1156.16 140.93C1135.08 140.93 1117.36 148.776 1102.9 164.547C1088.43 180.241 1081.24 199.696 1081.24 222.826C1081.24 245.87 1088.51 265.239 1103.06 281.096C1117.51 296.867 1135.24 304.798 1156.16 304.798C1176.1 304.798 1192.76 298.177 1206.24 285.021C1217.77 273.762 1225.6 258.915 1229.72 240.477C1231.66 234.831 1236.67 231.645 1241.97 232.478L1262.66 235.759L1263.82 235.943C1269.37 237.141 1273.08 242.474 1272.19 248.147C1272.07 248.889 1271.88 249.597 1271.63 250.272Z" fill="#4C4D48"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1443.05 311.373V331.236C1443.05 336.722 1438.61 341.168 1433.13 341.168V341.171H1421.98C1380.06 341.171 1346.56 330.459 1321.57 308.968C1296.65 287.475 1284.15 258.951 1284.15 223.399C1284.15 204.188 1288.64 186.291 1297.55 169.696C1306.45 153.108 1319.2 139.133 1335.62 127.854C1347.05 120.172 1359.31 114.698 1372.22 111.344C1385.13 107.995 1401.71 106.278 1421.98 106.278H1433C1438.55 106.278 1443.05 110.782 1443.05 116.334V136.454C1443.05 142.011 1438.55 146.51 1433 146.51H1424.83C1395.34 146.489 1371.81 153.518 1354.25 167.656C1336.68 181.795 1327.94 200.595 1327.94 224.051C1327.94 247.427 1336.76 266.143 1354.41 280.282C1371.98 294.421 1395.5 301.445 1424.83 301.445H1433.13C1438.61 301.445 1443.06 305.89 1443.06 311.373H1443.05Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1506.04 314.718V330.631C1506.04 336.453 1501.33 341.172 1495.51 341.172H1474.43H1473.9C1468.38 340.877 1463.98 336.378 1463.89 330.82V116.825C1463.89 110.998 1468.6 106.279 1474.42 106.279H1495.5H1496.04C1501.55 106.575 1505.94 111.075 1506.04 116.631V298.953V314.718Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1695.46 302.472V322.652V322.973C1695.39 326.661 1693.36 329.873 1690.36 331.595C1682 335.872 1673.73 338.907 1665.15 341.083C1654.61 343.699 1643.42 345.009 1631.82 345.009C1620.63 345.009 1609.51 343.291 1598.56 339.861C1587.53 336.43 1577.57 331.603 1568.67 325.396C1551.75 313.707 1538.76 299.161 1529.86 281.668C1520.96 264.179 1516.46 244.724 1516.46 223.398C1516.46 188.253 1527.57 159.236 1549.71 136.268C1571.93 113.387 1600.12 101.943 1634.27 101.943C1656.74 101.943 1677.33 107.585 1695.95 118.943C1714.66 130.303 1729.04 145.834 1739.09 165.611C1743.67 174.603 1747.01 184.332 1748.97 194.956C1751.02 205.578 1752 221.435 1752 242.521V325.366V330.566C1752 336.423 1747.25 341.171 1741.4 341.171H1720.2H1719.65C1714.12 340.876 1709.7 336.35 1709.6 330.76V298.708V224.053C1709.6 199.448 1702.65 179.591 1688.76 164.308C1674.88 149.022 1656.82 141.423 1634.68 141.423C1612.62 141.423 1594.57 148.941 1580.43 164.061C1566.3 179.182 1559.27 198.638 1559.27 222.417C1559.27 246.694 1566.54 266.553 1581.09 282.08C1595.55 297.529 1614.09 305.295 1636.56 305.295C1646.77 305.295 1656.74 303.492 1666.38 299.975C1671.01 298.292 1675.66 296.168 1680.32 293.608L1680.35 293.625C1681.82 292.797 1683.51 292.328 1685.32 292.328C1690.93 292.328 1695.47 296.872 1695.47 302.474Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M899.978 250.273C893.106 277.709 880.463 299.874 862.045 316.813C840.798 336.268 814.982 345.994 784.512 345.994C774.134 345.994 763.918 344.603 753.794 341.821C743.66 339.047 734.101 334.872 725.118 329.484C706.323 317.956 691.7 302.919 681.326 284.451C670.947 265.892 665.801 245.545 665.801 223.398C665.801 207.051 668.823 191.602 674.79 176.892C680.755 162.177 689.413 148.939 700.769 137.169C712.046 125.482 724.951 116.655 739.412 110.527C753.795 104.477 768.989 101.454 785.002 101.454C808.694 101.454 830.018 107.749 848.727 120.252C864.951 131.098 878.535 146.311 889.481 165.779C892.026 171.22 890.231 177.115 885.489 179.858L779.981 237.707C774.968 240.606 768.564 238.885 765.666 233.874L758.352 220.77L758.103 220.361C755.209 215.351 756.926 208.941 761.936 206.046L836.879 164.632C829.853 156.866 821.925 150.901 813.186 146.9C804.448 142.889 794.884 140.93 784.511 140.93C763.432 140.93 745.702 148.776 731.242 164.547C716.783 180.241 709.592 199.696 709.592 222.826C709.592 245.87 716.864 265.239 731.405 281.096C745.865 296.867 763.595 304.798 784.511 304.798C804.448 304.798 821.11 298.177 834.592 285.021C846.125 273.762 853.953 258.915 858.069 240.477C860.013 234.831 865.017 231.645 870.315 232.478L891.003 235.759L892.175 235.943C897.726 237.141 901.429 242.474 900.536 248.147C900.421 248.889 900.232 249.597 899.977 250.272Z" fill="#AC3A40"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M365.47 86.6633L365.33 85.5588L365.197 84.8125L364.983 83.7866L364.688 82.6558L364.354 81.574L363.695 79.8727C362.459 77.053 360.781 74.4627 358.601 72.2775C356.468 70.1482 353.966 68.3818 351.171 67.2453L350.026 66.7854L348.953 66.4066L348.033 66.1327L346.775 65.8201L345.358 65.5542L343.563 65.3488L342.289 65.2803L341.671 65.2723H283.25C270.108 65.2723 259.334 76.0489 259.334 89.2011C259.334 98.7818 265.128 107.434 273.89 111.203L282.263 114.806L192.193 204.907C182.905 214.207 182.905 229.449 192.193 238.745C201.49 248.042 216.731 248.042 226.019 238.745L316.089 148.641L319.69 157.022C323.454 165.785 332.107 171.587 341.688 171.587C354.829 171.587 365.604 160.805 365.604 147.657V89.2011C365.604 88.3636 365.573 87.9471C365.548 87.5226 365.501 87.0924 365.47 86.6633Z" fill="#4C4D48"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M376.531 201.508L328.73 204.857C337.224 264.914 299.08 322.344 240.558 338.032C176.632 355.168 110.077 316.727 92.9483 252.78C75.8192 188.833 114.245 122.248 178.168 105.113C193.696 100.952 210.014 99.9126 225.943 102.119L229.205 54.2824C207.959 51.7537 186.452 53.3467 165.789 58.8902C122.516 70.4883 86.012 98.6117 63.6245 137.407C41.262 176.157 35.1595 221.924 46.7428 265.167C58.3364 308.453 86.4489 344.971 125.229 367.367C163.964 389.739 209.71 395.844 252.939 384.256C333.347 362.702 386.549 284.224 376.53 201.508H376.531Z" fill="#4C4D48"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1459.48 69.4191C1459.48 62.3899 1461.93 56.341 1466.91 51.4365C1471.82 46.4511 1477.94 44 1485.05 44C1492.24 44 1498.28 46.4511 1503.19 51.2745C1508 56.1778 1510.46 62.2279 1510.46 69.4191C1510.46 76.6936 1508.01 82.9011 1503.19 87.9733C1498.28 92.9542 1492.24 95.4909 1485.05 95.4909C1478.1 95.4909 1472.06 92.9531 1466.99 87.809C1462.01 82.7391 1459.48 76.6103 1459.48 69.4191Z" fill="#AC3A40"/>
+      </svg>
+    </a>
+
+    <span class="header-badge">Downloads</span>
+
+    <a href="../index.html" class="nav-btn-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Central
+    </a>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <span class="hero-tag">Net e Cia Tecnologia</span>
+    <div class="hero-divider"></div>
+    <h1>Ferramentas & <span>Downloads</span></h1>
+    <p>Arquivos e utilitários disponibilizados pela equipe Net e Cia para suporte e acesso remoto.</p>
+  </section>
+
+  <!-- ── Filter bar ── -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-cat="all">Todos</button>
+  </div>
+
+  <!-- ── Stats ── -->
+  <div class="stats" id="statsBar" style="display:none;">
+    <div class="stat">
+      <span class="stat-num" id="statTotal">0</span>
+      <span class="stat-label">Disponíveis</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="statCats">0</span>
+      <span class="stat-label">Categorias</span>
+    </div>
+  </div>
+
+  <!-- ── Downloads ── -->
+  <section class="downloads-section">
+    <div id="content">
+      <div class="state-box">
+        <svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
+        <p>Carregando arquivos...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <strong>Net e Cia Tecnologia</strong> &mdash; Central de Conexões &copy; 2026
+  </footer>
+
+  <!-- ── Particles JS (identical to hub) ── -->
+  <script>
+    (() => {
+      const canvas = document.getElementById('particles');
+      const ctx    = canvas.getContext('2d');
+      let pts      = [];
+
+      const resize = () => {
+        canvas.width  = innerWidth;
+        canvas.height = innerHeight;
+        initPts();
+      };
+
+      const initPts = () => {
+        pts = Array.from({ length: 55 }, () => ({
+          x:  Math.random() * canvas.width,
+          y:  Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28,
+          r:  Math.random() * 1.5 + 0.4,
+        }));
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pts.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height)  p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(172,58,64,0.4)';
+          ctx.fill();
+        });
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const dx = pts[i].x - pts[j].x;
+            const dy = pts[i].y - pts[j].y;
+            const d  = Math.sqrt(dx * dx + dy * dy);
+            if (d < 130) {
+              ctx.beginPath();
+              ctx.moveTo(pts[i].x, pts[i].y);
+              ctx.lineTo(pts[j].x, pts[j].y);
+              ctx.strokeStyle = `rgba(172,58,64,${0.07 * (1 - d / 130)})`;
+              ctx.lineWidth   = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      };
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+  </script>
+
+  <!-- ── Downloads loader ── -->
+  <script>
+    let allDownloads = [];
+    let activeFilter = 'all';
+
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    const downloadIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+
+    function buildFilters(cats) {
+      const bar = document.getElementById('filterBar');
+      bar.innerHTML = '<button class="filter-btn active" data-cat="all">Todos</button>';
+      cats.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className  = 'filter-btn';
+        btn.dataset.cat = c;
+        btn.textContent = c;
+        bar.appendChild(btn);
+      });
+      bar.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeFilter = btn.dataset.cat;
+          render();
+        });
+      });
+    }
+
+    function render() {
+      const filtered = activeFilter === 'all'
+        ? allDownloads
+        : allDownloads.filter(d => d.category === activeFilter);
+
+      const content = document.getElementById('content');
+
+      if (!filtered.length) {
+        content.innerHTML = `<div class="state-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01M9.5 14s1 2 2.5 2 2.5-2 2.5-2"/></svg>
+          <p>Nenhum arquivo encontrado.</p>
+        </div>`;
+        return;
+      }
+
+      // Agrupa por categoria na visão "Todos"
+      if (activeFilter === 'all') {
+        const cats = {};
+        filtered.forEach(d => { const c = d.category || 'Geral'; (cats[c] = cats[c] || []).push(d); });
+        content.innerHTML = Object.entries(cats).map(([cat, items]) => `
+          <div class="cat-label">
+            <span class="cat-label-text">${esc(cat)}</span>
+            <span class="cat-label-line"></span>
+          </div>
+          <div class="downloads-grid">${items.map(cardHTML).join('')}</div>
+        `).join('');
+      } else {
+        content.innerHTML = `<div class="downloads-grid">${filtered.map(cardHTML).join('')}</div>`;
+      }
+    }
+
+    function cardHTML(d) {
+      // Sempre usa o serve.php — nunca expõe caminho real do arquivo
+      const href = `../api/serve.php?id=${d.id}`;
+      return `
+        <a class="dl-card" href="${esc(href)}" target="_blank" rel="noopener">
+          <div class="dl-pulse"></div>
+          <div class="dl-icon">${downloadIcon}</div>
+          <div class="dl-info">
+            <div class="dl-title">${esc(d.title)}</div>
+            ${d.description ? `<div class="dl-desc">${esc(d.description)}</div>` : ''}
+          </div>
+          <div class="dl-footer">
+            <span class="dl-cat-tag">${esc(d.category || 'Geral')}</span>
+            <span class="dl-btn">
+              ${downloadIcon}
+              Baixar
+            </span>
+          </div>
+        </a>`;
+    }
+
+    async function loadDownloads() {
+      try {
+        const res  = await fetch('../api/downloads.php');
+        const json = await res.json();
+        allDownloads = json.data || [];
+
+        if (!allDownloads.length) {
+          document.getElementById('content').innerHTML = `<div class="state-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <p>Nenhum download disponível no momento.</p>
+          </div>`;
+          return;
+        }
+
+        // Stats
+        const cats = [...new Set(allDownloads.map(d => d.category || 'Geral'))];
+        document.getElementById('statTotal').textContent = allDownloads.length;
+        document.getElementById('statCats').textContent  = cats.length;
+        document.getElementById('statsBar').style.display = '';
+
+        buildFilters(cats);
+        render();
+
+      } catch {
+        document.getElementById('content').innerHTML = `<div class="state-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p>Erro ao carregar downloads. Tente novamente.</p>
+        </div>`;
+      }
+    }
+
+    loadDownloads();
+  </script>
+
+</body>
+</html>
