@@ -6,8 +6,8 @@
 // ──────────────────────────────────────────────────────────────
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'neteciasite_central');
-define('DB_USER', 'neteciasite_central');
+define('DB_NAME', 'nete_netecia');
+define('DB_USER', 'nete_netecia');
 define('DB_PASS', 'St@rgate1');
 define('DB_CHARSET', 'utf8mb4');
 
@@ -72,7 +72,11 @@ function jwt_verify(string $token): ?array {
 
 // ── Requer autenticação ──────────────────────────────────────
 function require_auth(): array {
-    $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    // Tenta pegar o Authorization de múltiplas fontes (compatível com OLS/LiteSpeed/Apache)
+    $auth = $_SERVER['HTTP_AUTHORIZATION']
+         ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
+         ?? (function_exists('apache_request_headers') ? (apache_request_headers()['Authorization'] ?? '') : '')
+         ?? '';
     if (!preg_match('/^Bearer\s+(.+)$/i', $auth, $m)) {
         send_error('Token não fornecido', 401);
     }

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Telefonia em Nuvem | Net e Cia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/estilo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fff; }
+
+        /* ── Botão Hub Central ── */
+        .btn-hub {
+            position: fixed; top: 5.2rem; left: 1rem; z-index: 9999;
+            display: flex; align-items: center; gap: 0.4rem;
+            background: rgba(10,10,12,0.85); border: 1px solid rgba(172,58,64,0.4);
+            color: #e8e8ec; text-decoration: none;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+            padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+            border-radius: 8px; backdrop-filter: blur(8px);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-hub:hover { background: rgba(172,58,64,0.18); border-color: rgba(172,58,64,0.7); color: #fff; text-decoration: none; }
+        .btn-hub svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+        /* ══════════════════════════════════════
+           HERO
+        ══════════════════════════════════════ */
+        .hero-tel {
+            position: relative; width: 100%; height: 520px;
+            background: url('./imagens/img-voip-top.png') center / cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero-tel::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(10,15,40,0.92) 0%, rgba(113,6,6,0.85) 100%);
+        }
+        .hero-content { position: relative; z-index: 1; padding: 0 1.5rem; max-width: 800px; }
+        .hero-pill {
+            display: inline-block;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+            color: rgba(255,255,255,0.9); font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            padding: 0.4rem 1.1rem; border-radius: 20px; margin-bottom: 1.2rem;
+        }
+        .hero-content h1 {
+            color: white; font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 900; margin: 0 0 1rem; line-height: 1.12; letter-spacing: 0.02em;
+        }
+        .hero-content h1 span { color: #f87171; }
+        .hero-content p { color: rgba(255,255,255,0.78); font-size: 1.08rem; margin: 0 0 2.2rem; line-height: 1.75; }
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            background: white; color: #710606;
+            padding: 0.85rem 2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 0.92rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); color: #710606; text-decoration: none; }
+        .hero-cta svg { width: 18px; height: 18px; }
+        .hero-cta-wa {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            background: #25D366; color: white;
+            padding: 0.85rem 2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 0.92rem;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .hero-cta-wa:hover { transform: translateY(-3px); background: #1ebe5a; box-shadow: 0 10px 28px rgba(37,211,102,0.45); color: white; text-decoration: none; }
+        .hero-cta-wa svg { width: 20px; height: 20px; fill: white; }
+
+        /* ── Stats bar ── */
+        .stats-bar {
+            background: #0f172a; padding: 2rem 1.5rem;
+            display: flex; justify-content: center; gap: 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            flex: 1; min-width: 160px; max-width: 240px;
+            text-align: center; padding: 1rem 1.5rem;
+            border-right: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num { font-size: 2rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 0.3rem; }
+        .stat-num span { color: #ac3a40; }
+        .stat-label { font-size: 0.78rem; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase; }
+
+        /* ══════════════════════════════════════
+           ABOUT / SOBRE
+        ══════════════════════════════════════ */
+        .about-section { background: #fff; padding: 5.5rem 1.5rem; }
+        .about-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: center;
+        }
+        @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+        .about-label { display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #710606; margin-bottom: 0.8rem; }
+        .about-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #0f172a; margin: 0 0 1.2rem; line-height: 1.2; }
+        .about-text h2 em { font-style: normal; color: #710606; }
+        .about-text p { color: #475569; font-size: 0.97rem; line-height: 1.85; margin: 0 0 1rem; }
+        .about-checks { list-style: none; padding: 0; margin: 1rem 0 1.5rem; }
+        .about-checks li {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            font-size: 0.93rem; color: #334155; margin-bottom: 0.6rem;
+        }
+        .about-checks li::before {
+            content: '✓'; color: #710606; font-weight: 900; font-size: 0.85rem;
+            margin-top: 0.1rem; flex-shrink: 0;
+        }
+        .about-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #710606; color: white; padding: 0.75rem 1.8rem; border-radius: 8px;
+            text-decoration: none; font-weight: 700; font-size: 0.9rem;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .about-cta:hover { background: #8b0000; transform: translateY(-2px); color: white; text-decoration: none; }
+        .about-cta svg { width: 16px; height: 16px; fill: none; stroke: white; stroke-width: 2.5; }
+        .about-img-wrap { border-radius: 20px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.14); }
+
+        /* ══════════════════════════════════════
+           VANTAGENS / FEATURES
+        ══════════════════════════════════════ */
+        .features-section { background: #f8fafc; padding: 5.5rem 1.5rem; }
+        .sec-header { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+        .sec-label { display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.8rem; }
+        .sec-label--dark { color: #710606; }
+        .sec-label--light { color: rgba(255,255,255,0.5); }
+        .sec-header h2 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 900; margin: 0 0 0.75rem; line-height: 1.2; }
+        .sec-header--dark h2 { color: #0f172a; }
+        .sec-header--light h2 { color: white; }
+        .sec-header p { font-size: 0.95rem; margin: 0; }
+        .sec-header--dark p { color: #64748b; }
+        .sec-header--light p { color: rgba(255,255,255,0.6); }
+        .features-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        @media (max-width: 860px) { .features-grid { grid-template-columns: 1fr; max-width: 480px; } }
+        .feat-card {
+            background: white; border-radius: 20px; padding: 2.4rem 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; gap: 1rem;
+        }
+        .feat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(0,0,0,0.13); }
+        .feat-icon {
+            width: 60px; height: 60px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feat-icon svg { width: 30px; height: 30px; }
+        .feat-icon--blue  { background: rgba(29,78,216,0.1); }
+        .feat-icon--red   { background: rgba(113,6,6,0.1); }
+        .feat-icon--green { background: rgba(16,185,129,0.1); }
+        .feat-icon--purple{ background: rgba(124,58,237,0.1); }
+        .feat-icon--amber { background: rgba(245,158,11,0.1); }
+        .feat-icon--teal  { background: rgba(20,184,166,0.1); }
+        .feat-card h3 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin: 0; }
+        .feat-card p { font-size: 0.88rem; color: #64748b; line-height: 1.75; margin: 0; }
+
+        /* ══════════════════════════════════════
+           PLANO — PRICING
+        ══════════════════════════════════════ */
+        .pricing-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e0a0a 100%);
+            padding: 5.5rem 1.5rem; text-align: center;
+        }
+        .pricing-card {
+            display: inline-block; max-width: 560px; width: 100%;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px; padding: 3rem 2.5rem;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+        }
+        .pricing-badge {
+            display: inline-block; background: #ac3a40; color: white;
+            font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 0.35rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
+        }
+        .pricing-card h3 { color: white; font-size: 1.5rem; font-weight: 900; margin: 0 0 2rem; }
+        .pricing-items {
+            list-style: none; padding: 0; margin: 0 0 2rem;
+            display: flex; flex-direction: column; gap: 0.85rem;
+        }
+        .pricing-items li {
+            display: flex; align-items: center; gap: 0.8rem;
+            color: rgba(255,255,255,0.85); font-size: 0.96rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .pricing-items li:last-child { border-bottom: none; padding-bottom: 0; }
+        .pricing-items li svg { width: 18px; height: 18px; flex-shrink: 0; color: #4ade80; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .pricing-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0 0 2rem; }
+        .pricing-price { margin: 0 0 0.5rem; }
+        .pricing-price .from { font-size: 0.8rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+        .pricing-price .amount { font-size: 3.2rem; font-weight: 900; color: white; line-height: 1; }
+        .pricing-price .amount sup { font-size: 1.3rem; font-weight: 700; vertical-align: top; margin-top: 0.5rem; color: #ac3a40; }
+        .pricing-price .amount .period { font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.5); }
+        .pricing-note { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin: 0.5rem 0 2rem; }
+        .btn-pricing-wa {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: #25D366; color: white;
+            padding: 1rem 2.6rem; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1.05rem;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            width: 100%; justify-content: center;
+        }
+        .btn-pricing-wa:hover { background: #1ebe5a; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.5); color: white; text-decoration: none; }
+        .btn-pricing-wa svg { width: 24px; height: 24px; }
+
+        /* ══════════════════════════════════════
+           VÍDEO
+        ══════════════════════════════════════ */
+        .video-section {
+            background: #0f172a; padding: 5rem 1.5rem; text-align: center;
+        }
+        .video-wrap {
+            max-width: 900px; margin: 0 auto;
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .video-wrap iframe { display: block; width: 100%; aspect-ratio: 16/9; border: none; }
+
+        /* ── FABs ── */
+        .fab-stack {
+            position: fixed; right: 20px; bottom: 20px; z-index: 10000000;
+            display: flex; flex-direction: column; gap: 12px; align-items: center;
+        }
+        .fab-btn {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.28); text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .fab-btn:hover { transform: translateY(-4px) scale(1.1); box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+        .fab-btn svg { width: 28px; height: 28px; fill: white; }
+        .fab-wa { background: #25D366; }
+        .fab-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+        /* ── Footer override ── */
+        div#uk-rodape { padding-bottom: 40px !important; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Botão voltar ao Hub Central ── -->
+    <a class="btn-hub" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Central
+    </a>
+
+    <!-- ── Cabeçalho ── -->
+    <header>
+        <div class="j-topo-voip-desk uk-visible@m">
+            <div class="cabecamenu">
+                <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                    <div class="uk-navbar-left uk-margin-large-left">
+                        <a href="index.html"><img src="./imagens/logobranca.png" style="width: 160px;"></a>
+                    </div>
+                    <div class="j-menu-uk-navbar-right uk-navbar-right uk-margin-large-right">
+                        <ul class="j-menu-uk-navbar-nav uk-navbar-nav">
+                            <li class="j-item-menu-topo"><a href="index.html">HOME</a></li>
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VÍDEOS</a></li>
+                            <li><p id="bt-contato"><a class="j-topo-desk-uk-button uk-button" href="#rodape" uk-scroll><span class="j-bt-contato">contato</span></a></p></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="j-topo-mob uk-hidden@m">
+            <div id="barra-topo-mb">
+                <a href="index.html"><img id="logo-mob" class="uk-position-relative uk-position-center" src="./imagens/logobranca.png"></a>
+                <div id="btMenu" class="btMenuIndex">
+                    <button uk-toggle="target: #my-id" type="button" uk-icon="menu"></button>
+                </div>
+            </div>
+            <div id="my-id" uk-offcanvas>
+                <div class="uk-offcanvas-bar">
+                    <button class="uk-offcanvas-close" type="button" uk-close></button>
+                    <nav>
+                        <ul class="uk-list">
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="down.php">DOWNLOADS</a></li>
+                            <li><a href="http://netecia.com.br/canal" target="_blank">VIDEOS</a></li>
+                            <li><a href="index.html#rodape">CONTATO</a></li>
+                            <li><a href="index.html">← Central</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  HERO                                                   -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="hero-tel">
+        <div class="hero-content">
+            <span class="hero-pill">Net e Cia Tecnologia</span>
+            <h1>Telefonia em <span>Nuvem</span><br>para sua Empresa</h1>
+            <p>Um único número para toda a sua equipe.<br>
+               Atenda, transfira e gerencie ligações de qualquer lugar do mundo.</p>
+            <div class="hero-btns">
+                <a class="hero-cta" href="#plano">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#710606" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                    Ver plano
+                </a>
+                <a class="hero-cta-wa" href="https://api.whatsapp.com/send?phone=552732168554&text=Te%20encontrei%20pelo%20site%2C%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                    Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Stats bar ── -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-num">1<span>número</span></div>
+            <div class="stat-label">para toda a empresa</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><span>+</span>5</div>
+            <div class="stat-label">ramais simultâneos</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">200<span>min</span></div>
+            <div class="stat-label">para fixo e móvel</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><span>∞</span></div>
+            <div class="stat-label">ligações entre ramais</div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  SOBRE                                                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="about-section">
+        <div class="about-inner">
+            <div class="about-text">
+                <span class="about-label">Por que Telefonia em Nuvem?</span>
+                <h2>Atenda seus clientes de <em>qualquer lugar</em></h2>
+                <p>
+                    Com a telefonia em nuvem da Net e Cia, sua empresa tem um número
+                    profissional único — acessível pelo celular, computador ou ramal físico,
+                    de qualquer lugar onde haja internet.
+                </p>
+                <ul class="about-checks">
+                    <li>Sem precisar divulgar o número pessoal dos colaboradores</li>
+                    <li>Um único número para matriz e filiais</li>
+                    <li>Atendimento automático com menu de opções (URA)</li>
+                    <li>Transferência de chamadas entre ramais com facilidade</li>
+                    <li>Perfeito para equipes em home office</li>
+                    <li>Sem necessidade de cabeamento ou PABX físico</li>
+                </ul>
+                <a class="about-cta" href="#plano">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Ver nosso plano
+                </a>
+            </div>
+            <div class="about-img-wrap">
+                <!-- Ilustração SVG: telefonia em nuvem / VoIP -->
+                <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:380px;display:block;background:#0f172a;">
+                    <defs>
+                        <linearGradient id="tg1" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/>
+                        </linearGradient>
+                        <linearGradient id="phoneGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#1e3a5f"/><stop offset="100%" stop-color="#0f172a"/>
+                        </linearGradient>
+                        <linearGradient id="callGreen" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#16a34a"/><stop offset="100%" stop-color="#22c55e"/>
+                        </linearGradient>
+                        <filter id="tglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="tglow2"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <rect width="520" height="380" fill="url(#tg1)"/>
+
+                    <!-- grid sutil -->
+                    <g opacity="0.05" stroke="#60a5fa" stroke-width="0.5">
+                        <line x1="0" y1="76" x2="520" y2="76"/><line x1="0" y1="152" x2="520" y2="152"/>
+                        <line x1="0" y1="228" x2="520" y2="228"/><line x1="0" y1="304" x2="520" y2="304"/>
+                        <line x1="86" y1="0" x2="86" y2="380"/><line x1="173" y1="0" x2="173" y2="380"/>
+                        <line x1="260" y1="0" x2="260" y2="380"/><line x1="347" y1="0" x2="347" y2="380"/>
+                        <line x1="434" y1="0" x2="434" y2="380"/>
+                    </g>
+
+                    <!-- brilhos de fundo -->
+                    <ellipse cx="260" cy="200" rx="180" ry="120" fill="#ac3a40" opacity="0.05"/>
+                    <ellipse cx="420" cy="80"  rx="100" ry="70"  fill="#1d4ed8" opacity="0.07"/>
+                    <ellipse cx="100" cy="300" rx="110" ry="70"  fill="#10b981" opacity="0.06"/>
+
+                    <!-- ═══ SMARTPHONE CENTRAL ═══ -->
+                    <!-- corpo -->
+                    <rect x="190" y="60" width="140" height="250" rx="20" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+                    <!-- tela -->
+                    <rect x="197" y="70" width="126" height="230" rx="14" fill="url(#phoneGrad)"/>
+                    <!-- notch -->
+                    <rect x="238" y="72" width="44" height="6" rx="3" fill="#0f172a"/>
+                    <circle cx="296" cy="75" r="3" fill="#0f172a"/>
+
+                    <!-- interface de chamada em andamento -->
+                    <!-- avatar / foto do contato -->
+                    <circle cx="260" cy="140" r="38" fill="#1d4ed8" opacity="0.3"/>
+                    <circle cx="260" cy="140" r="30" fill="#1d4ed8" opacity="0.5"/>
+                    <!-- avatar headset -->
+                    <ellipse cx="260" cy="132" rx="16" ry="17" fill="#fde68a"/>
+                    <ellipse cx="260" cy="120" rx="16" ry="9"  fill="#92400e"/>
+                    <rect x="244" y="119" width="32" height="6" rx="3" fill="#92400e"/>
+                    <rect x="240" y="128" width="7" height="10" rx="3.5" fill="#475569"/>
+                    <rect x="273" y="128" width="7" height="10" rx="3.5" fill="#475569"/>
+                    <path d="M244 126 Q244 115 260 115 Q276 115 276 126" stroke="#475569" stroke-width="2.5" fill="none"/>
+
+                    <!-- nome e status -->
+                    <rect x="218" y="182" width="84" height="8" rx="4" fill="white" opacity="0.5"/>
+                    <rect x="230" y="195" width="60" height="5" rx="2.5" fill="white" opacity="0.25"/>
+
+                    <!-- timer de chamada -->
+                    <text x="260" y="220" font-family="'Courier New',monospace" font-size="13" fill="white" text-anchor="middle" opacity="0.7">00:04:32</text>
+
+                    <!-- ondas de chamada ao redor do avatar -->
+                    <circle cx="260" cy="140" r="44" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.25"/>
+                    <circle cx="260" cy="140" r="55" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.15"/>
+
+                    <!-- botões de chamada -->
+                    <!-- encerrar (vermelho) -->
+                    <circle cx="230" cy="248" r="20" fill="#ac3a40"/>
+                    <path d="M222 248 Q230 244 238 248" fill="white" stroke="white" stroke-width="1"/>
+                    <circle cx="222" cy="252" r="3" fill="white" opacity="0.8"/>
+                    <circle cx="238" cy="252" r="3" fill="white" opacity="0.8"/>
+                    <!-- mudo -->
+                    <circle cx="260" cy="248" r="20" fill="rgba(255,255,255,0.1)"/>
+                    <line x1="260" y1="241" x2="260" y2="253" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M254 245 Q254 256 260 256 Q266 256 266 245" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <!-- alto-falante -->
+                    <circle cx="290" cy="248" r="20" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M286 244 L290 240 L290 256 L286 252 Z" fill="white"/>
+                    <path d="M292 244 Q297 248 292 252" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M294 241 Q302 248 294 255" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <!-- barra inferior do celular -->
+                    <rect x="243" y="294" width="34" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
+
+                    <!-- ═══ NUVEM VOIP ═══ -->
+                    <ellipse cx="260" cy="30"  rx="42" ry="26" fill="#1e3a5f" opacity="0.9"/>
+                    <ellipse cx="235" cy="40"  rx="28" ry="21" fill="#1e3a5f" opacity="0.9"/>
+                    <ellipse cx="285" cy="40"  rx="28" ry="21" fill="#1e3a5f" opacity="0.9"/>
+                    <rect x="207" y="40" width="106" height="21" fill="#1e3a5f" opacity="0.9"/>
+                    <ellipse cx="260" cy="30"  rx="42" ry="26" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity="0.4"/>
+                    <ellipse cx="235" cy="40"  rx="28" ry="21" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity="0.4"/>
+                    <ellipse cx="285" cy="40"  rx="28" ry="21" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity="0.4"/>
+                    <text x="260" y="43" font-family="Arial" font-size="8" fill="#60a5fa" text-anchor="middle" font-weight="bold" opacity="0.9">VoIP CLOUD</text>
+                    <!-- linha nuvem → celular -->
+                    <line x1="260" y1="60" x2="260" y2="68" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+
+                    <!-- ═══ DISPOSITIVOS CONECTADOS ═══ -->
+                    <!-- Laptop esquerdo -->
+                    <rect x="30" y="155" width="100" height="68" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="36" y="161" width="88" height="54" rx="3" fill="#0f172a"/>
+                    <rect x="36" y="161" width="88" height="54" rx="3" fill="url(#phoneGrad)" opacity="0.6"/>
+                    <!-- interface softphone no laptop -->
+                    <rect x="42" y="167" width="40" height="4" rx="2" fill="white" opacity="0.5"/>
+                    <rect x="42" y="174" width="28" height="3" rx="1.5" fill="white" opacity="0.25"/>
+                    <!-- ícone telefone no laptop -->
+                    <circle cx="102" cy="185" r="14" fill="url(#callGreen)" opacity="0.9"/>
+                    <path d="M96 185 Q102 181 108 185 M96 190 Q102 194 108 190" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="102" cy="188" r="3" fill="white" opacity="0.9"/>
+                    <!-- base laptop -->
+                    <rect x="22" y="222" width="116" height="6" rx="3" fill="#334155"/>
+                    <rect x="50" y="226" width="60" height="3" rx="1.5" fill="#1e293b"/>
+                    <!-- label -->
+                    <text x="80" y="242" font-family="Arial" font-size="8" fill="#64748b" text-anchor="middle">Softphone</text>
+
+                    <!-- Tablet direito -->
+                    <rect x="390" y="140" width="100" height="140" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+                    <rect x="397" y="150" width="86" height="120" rx="6" fill="#0f172a"/>
+                    <rect x="397" y="150" width="86" height="120" rx="6" fill="url(#phoneGrad)" opacity="0.7"/>
+                    <!-- interface chamada no tablet -->
+                    <circle cx="440" cy="188" r="22" fill="#1d4ed8" opacity="0.3"/>
+                    <circle cx="440" cy="188" r="15" fill="#1d4ed8" opacity="0.5"/>
+                    <!-- ícone pessoa tablet -->
+                    <ellipse cx="440" cy="184" rx="9" ry="10" fill="#fde68a"/>
+                    <ellipse cx="440" cy="177" rx="9" ry="5" fill="#92400e"/>
+                    <rect x="400" y="218" width="80" height="5" rx="2.5" fill="white" opacity="0.3"/>
+                    <rect x="408" y="226" width="64" height="4" rx="2" fill="white" opacity="0.15"/>
+                    <!-- botão verde no tablet -->
+                    <rect x="412" y="238" width="56" height="22" rx="11" fill="url(#callGreen)"/>
+                    <path d="M425 249 Q440 245 455 249" fill="white" opacity="0.9" stroke="white" stroke-width="0.5"/>
+                    <circle cx="425" cy="253" r="3" fill="white" opacity="0.8"/>
+                    <circle cx="455" cy="253" r="3" fill="white" opacity="0.8"/>
+                    <!-- label -->
+                    <text x="440" y="280" font-family="Arial" font-size="8" fill="#64748b" text-anchor="middle">Ramal</text>
+
+                    <!-- ═══ LINHAS DE CONEXÃO ══ -->
+                    <!-- laptop → nuvem -->
+                    <path d="M130 175 Q180 80 215 50" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.5"/>
+                    <circle cx="130" cy="175" r="4" fill="#3b82f6" filter="url(#tglow2)"/>
+                    <!-- tablet → nuvem -->
+                    <path d="M390 165 Q340 80 305 50" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.5"/>
+                    <circle cx="390" cy="165" r="4" fill="#3b82f6" filter="url(#tglow2)"/>
+
+                    <!-- ═══ BADGES FLUTUANTES ═══ -->
+                    <!-- badge ligação ativa (verde) -->
+                    <rect x="28" y="60" width="130" height="40" rx="10" fill="#0d2515" stroke="#22c55e" stroke-width="1.2" opacity="0.95"/>
+                    <circle cx="46" cy="80" r="6" fill="#22c55e" filter="url(#tglow2)"/>
+                    <text x="58" y="75" font-family="Arial" font-size="8" fill="#4ade80">Ligação ativa</text>
+                    <text x="58" y="88" font-family="Arial" font-size="10" fill="white" font-weight="bold">Ramal 101</text>
+
+                    <!-- badge transferência -->
+                    <rect x="362" y="48" width="130" height="40" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.2" opacity="0.95"/>
+                    <text x="375" y="63" font-family="Arial" font-size="8" fill="#93c5fd">Transferindo</text>
+                    <text x="375" y="77" font-family="Arial" font-size="10" fill="white" font-weight="bold">→ Ramal 205</text>
+                    <circle cx="484" cy="68" r="5" fill="#f59e0b" filter="url(#tglow2)"/>
+
+                    <!-- badge ramais online -->
+                    <rect x="362" y="310" width="130" height="40" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2"/>
+                    <text x="375" y="325" font-family="Arial" font-size="8" fill="#94a3b8">Ramais online</text>
+                    <text x="375" y="339" font-family="Arial" font-size="10" fill="#22c55e" font-weight="bold">4 / 5 ativos ●</text>
+
+                    <!-- badge URA -->
+                    <rect x="28" y="310" width="130" height="40" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2"/>
+                    <text x="41" y="325" font-family="Arial" font-size="8" fill="#94a3b8">URA / Menu</text>
+                    <text x="41" y="339" font-family="Arial" font-size="10" fill="#f59e0b" font-weight="bold">Ativo ✦</text>
+
+                    <!-- badge rodapé -->
+                    <rect x="110" y="352" width="300" height="22" rx="11" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+                    <text x="260" y="367" font-family="'Segoe UI',Arial,sans-serif" font-size="9.5" fill="#94a3b8" text-anchor="middle" letter-spacing="1">VOIP · RAMAL · URA · MOBILIDADE · SEM FIDELIDADE</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  VANTAGENS                                              -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="features-section">
+        <div class="sec-header sec-header--dark">
+            <span class="sec-label sec-label--dark">Vantagens</span>
+            <h2>Tudo que sua empresa precisa em uma ligação</h2>
+            <p>Tecnologia VoIP profissional, simples de usar e sem burocracia.</p>
+        </div>
+        <div class="features-grid">
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                </div>
+                <h3>Mobilidade Total</h3>
+                <p>Atenda pelo celular, computador ou softphone. Sua equipe nunca perde uma ligação, mesmo trabalhando em casa ou em viagem.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ac3a40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </div>
+                <h3>Um Número, Vários Ramais</h3>
+                <p>Divulgue apenas um número para seus clientes. As chamadas chegam ao ramal certo, com menu automático e transferência facilitada.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h3>Privacidade Garantida</h3>
+                <p>Colaboradores nunca precisam expor o número pessoal. Receba chamadas profissionais no celular sem misturar com a vida pessoal.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                </div>
+                <h3>Qualidade de Voz HD</h3>
+                <p>Codec de alta definição com latência mínima. Suas ligações soam profissionais, claras e sem ruídos — impressionando cada cliente.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <h3>Sem Fidelidade</h3>
+                <p>Contrato mensal, sem multa de cancelamento. Você só paga enquanto usar. Escale a solução conforme o crescimento do seu negócio.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon feat-icon--teal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <h3>Sem PABX Físico</h3>
+                <p>Esqueça equipamentos caros e cabeamentos. Toda a infraestrutura é em nuvem — instalação rápida, manutenção zero e custo reduzido.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  PLANO / PRICING                                        -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="pricing-section" id="plano">
+        <div class="sec-header sec-header--light" style="margin-bottom:3rem;">
+            <span class="sec-label sec-label--light">Nosso Plano</span>
+            <h2>Simples, completo e acessível</h2>
+            <p>Tudo que sua empresa precisa em um único plano sem surpresas.</p>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-badge">Plano Empresarial</span>
+            <h3>Telefonia em Nuvem</h3>
+            <ul class="pricing-items">
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    1 número telefônico profissional
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    2 canais para recebimento de ligações
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    2 canais para efetuar ligações
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    5 ramais simultâneos
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    200 minutos para fixo e móvel
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    Ligações ilimitadas entre ramais
+                </li>
+            </ul>
+            <hr class="pricing-divider"/>
+            <div class="pricing-price">
+                <span class="from">A partir de</span>
+                <div class="amount">
+                    <sup>R$</sup>150<span class="period">,00/mês</span>
+                </div>
+            </div>
+            <p class="pricing-note">Sem taxa de instalação · Sem fidelidade · Suporte incluído</p>
+            <a class="btn-pricing-wa"
+               href="https://api.whatsapp.com/send?phone=552732168554&text=Te%20encontrei%20pelo%20site%2C%20gostaria%20de%20um%20or%C3%A7amento!"
+               target="_blank">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="16" fill="white" opacity="0.2"/>
+                    <path d="M23.5 20.5c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-.95 1.2-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.7-1.68-.95-2.3-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.02 1-.02 2.97 1 1.97 1.97 2.85 3.8 4.27 1.82 1.42 1.82 1 2.15 1.05.32.05 1.05-.43 1.2-.85.15-.42.15-.78.1-.85-.05-.07-.2-.12-.5-.27z" fill="white"/>
+                </svg>
+                Clique aqui — Falar no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--  VÍDEO                                                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="video-section">
+        <div class="sec-header sec-header--light" style="margin-bottom:2.5rem;">
+            <span class="sec-label sec-label--light">Assista</span>
+            <h2>Veja como a Telefonia em Nuvem funciona</h2>
+            <p>Entenda na prática como sua empresa pode se beneficiar da solução VoIP.</p>
+        </div>
+        <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/UWM9HxOxdGk?autoplay=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                    frameborder="0" allowfullscreen uk-responsive uk-video="automute: true"></iframe>
+        </div>
+    </section>
+
+    <!-- ── FABs ── -->
+    <div class="fab-stack">
+        <a class="fab-btn fab-ig" href="https://instagram.com/netecia.oficial" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a class="fab-btn fab-wa" href="https://api.whatsapp.com/send?phone=552732168554&text=Te%20encontrei%20pelo%20site%2C%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+    </div>
+
+    <!-- ── Rodapé ── -->
+    <footer>
+        <div id="rodape">
+            <div id="uk-rodape" class="uk-section uk-section-secondary uk-light">
+                <div class="uk-container">
+                    <h3>Net e Cia Tecnologia</h3>
+                    <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
+                        <div><a href="mailto:contato@netecia.com.br"><p>contato@netecia.com.br</p></a></div>
+                        <div><p>(27)3216-8554</p></div>
+                        <div><p>CNPJ: 58.377.040/0001-37</p></div>
+                        <div>
+                            <a href="https://maps.google.com/?q=Rua+Cama%C3%A7ari,+342,+Cariacica,+ES" target="_blank">
+                                <p>Rua Camaçari, 342 Ap 301 — Cariacica, ES — CEP 29147-517</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="sociais">
+                    <br><hr>
+                    <p>Temos diversas soluções para sua empresa. Entre em contato conosco e tire todas as suas dúvidas.</p>
+                    <a href="http://netecia.com.br/canal" target="_blank" uk-icon="youtube"></a>
+                    <a href="http://facebook.com/netecia" target="_blank" uk-icon="facebook"></a>
+                    <a href="https://instagram.com/netecia.oficial" uk-icon="instagram" target="_blank"></a>
+                    <a href="https://api.whatsapp.com/send?phone=552732168554&text=Site" uk-icon="whatsapp" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

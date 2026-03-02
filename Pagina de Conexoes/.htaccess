@@ -9,6 +9,16 @@ DirectoryIndex index.html index.php
 # Charset padrão
 AddDefaultCharset UTF-8
 
+# ── Passa o header Authorization para o PHP (necessário p/ JWT) ──
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+</IfModule>
+
+# ── Garante que PHP receba o Authorization mesmo no OLS/LiteSpeed ──
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 # Cache de assets estáticos (1 semana)
 <IfModule mod_expires.c>
     ExpiresActive On

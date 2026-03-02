@@ -192,6 +192,16 @@
       font-weight: 700;
       flex-shrink: 0;
     }
+    .suporte-ver-todos {
+      display: block;
+      margin-top: 0.7rem;
+      font-size: 0.72rem;
+      color: rgba(172,58,64,0.7);
+      text-decoration: none;
+      text-align: right;
+      transition: color 0.2s;
+    }
+    .suporte-ver-todos:hover { color: var(--red-light); }
     @media (max-width: 700px) {
       .hero-contatos, .hero-suporte {
         position: static;
@@ -324,6 +334,48 @@
     .center-node .center-logo {
       width: 100%;
       height: auto;
+    }
+
+    /* ── Dica: seta + texto apontando para o logo Netecia no hero ── */
+    .hub-hint {
+      position: absolute;
+      /* borda direita da hint fica colada à borda esquerda do logo (centro - metade do logo ~170px - gap 6px) */
+      right: calc(50% + 176px);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      z-index: 20;
+      animation: hint-float 2s ease-in-out infinite;
+    }
+    .hub-hint-text {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: #AC3A40;
+      background: rgba(10,10,15,.72);
+      border: 1px solid rgba(172,58,64,.35);
+      border-radius: 20px;
+      padding: 6px 16px;
+      white-space: nowrap;
+      backdrop-filter: blur(6px);
+    }
+    .hub-hint-arrow {
+      width: 60px;
+      height: 18px;
+      filter: drop-shadow(0 0 5px rgba(172,58,64,.7));
+      flex-shrink: 0;
+    }
+    @keyframes hint-float {
+      0%, 100% { transform: translateY(-50%) translateX(0);   opacity: 1; }
+      50%       { transform: translateY(-50%) translateX(6px); opacity: .75; }
+    }
+    @media (max-width: 700px) {
+      .hub-hint { display: none; }
     }
 
     /* Each connection node — positioned via JS at orbit radius */
@@ -473,7 +525,7 @@
 
   <!-- ── Header ── -->
   <header>
-    <a class="header-logo" href="Site/index.html" title="Netecia">
+    <a class="header-logo" href="home.html" title="Home Netecia">
       <!-- Logo compacta no header -->
       <svg viewBox="41 44 1711 346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Netecia">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M645.148 341.171C650.933 341.171 655.625 336.479 655.625 330.691C655.625 329.922 655.539 329.175 655.384 328.454V213.016C655.384 178.855 646.396 151.801 628.339 131.855C610.287 111.915 586.101 101.945 555.79 101.945C525.479 101.945 501.293 111.916 483.077 131.855C464.856 151.801 455.792 178.851 455.792 213.016V330.691C455.792 336.479 460.483 341.171 466.269 341.171H487.223C493.009 341.171 497.696 336.479 497.699 330.691V205.416C497.699 186.866 503.172 171.743 514.126 160.134C524.989 148.451 538.959 142.65 555.789 142.65C572.862 142.65 586.834 148.451 597.538 160.134C608.32 171.745 613.715 186.863 613.715 205.416V330.691C613.715 336.479 618.406 341.171 624.192 341.171H645.145H645.148Z" fill="#AC3A40"/>
@@ -532,7 +584,7 @@
     </aside>
 
     <!-- Logo grande da empresa -->
-    <a class="hero-logo" href="Site/index.html" title="Site Netecia">
+    <a class="hero-logo" href="home.html" title="Home Netecia">
       <svg viewBox="41 44 1711 346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Netecia">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M645.148 341.171C650.933 341.171 655.625 336.479 655.625 330.691C655.625 329.922 655.539 329.175 655.384 328.454V213.016C655.384 178.855 646.396 151.801 628.339 131.855C610.287 111.915 586.101 101.945 555.79 101.945C525.479 101.945 501.293 111.916 483.077 131.855C464.856 151.801 455.792 178.851 455.792 213.016V330.691C455.792 336.479 460.483 341.171 466.269 341.171H487.223C493.009 341.171 497.696 336.479 497.699 330.691V205.416C497.699 186.866 503.172 171.743 514.126 160.134C524.989 148.451 538.959 142.65 555.789 142.65C572.862 142.65 586.834 148.451 597.538 160.134C608.32 171.745 613.715 186.863 613.715 205.416V330.691C613.715 336.479 618.406 341.171 624.192 341.171H645.145H645.148Z" fill="#AC3A40"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M1026.39 311.009L1026.38 311.137V330.927L1026.39 331.121C1026.39 336.428 1022.27 340.777 1017.05 341.146L1017.03 341.171H1016.34H1012.49C979.323 341.171 954.407 333.898 937.904 319.347C921.402 304.881 913.147 282.979 913.147 253.802V54.546V54.4776C913.186 48.6854 917.885 44.0012 923.686 44.0012H923.689H944.764C950.588 44.0012 955.301 48.7196 955.306 54.5426V54.5472V106.279H1016.46C1021.94 106.283 1026.38 110.722 1026.38 116.206V116.211V136.069C1026.38 141.551 1021.94 145.997 1016.46 146H955.306V246.608C955.306 265.406 959.881 279.22 969.031 287.884C978.265 296.631 992.887 300.959 1012.99 300.959H1016.34C1021.82 300.959 1026.28 305.356 1026.38 310.817V310.881L1026.39 311.01Z" fill="#AC3A40"/>
@@ -551,19 +603,20 @@
 
     <aside class="hero-suporte">
       <h4 class="suporte-titulo">Download Suporte</h4>
-      <ul class="suporte-lista">
-        <li>
-          <a href="https://netecia.com.br/suporte" target="_blank" rel="noopener">
-            <span>1</span> Suporte Netecia
-          </a>
-        </li>
-        <li>
-          <a href="https://netecia.com.br/suporte2/1%20-%20Net%20e%20Cia-SuporteQS%20remote.exe" target="_blank" rel="noopener">
-            <span>2</span> QS Suporte Netecia
-          </a>
-        </li>
+      <ul class="suporte-lista" id="downloadsLista">
+        <li style="color:rgba(154,152,144,0.5);font-size:0.78rem;">Carregando...</li>
       </ul>
+      <a href="download/" class="suporte-ver-todos" title="Ver todos os downloads">Todos os downloads →</a>
     </aside>
+
+    <!-- ── Dica: seta + texto apontando para o logo Netecia ── -->
+    <a class="hub-hint" href="home.html" title="Ir para o Site">
+      <span class="hub-hint-text">Clique aqui para ir ao Site</span>
+      <svg class="hub-hint-arrow" viewBox="0 0 60 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 9 L52 9" stroke="#AC3A40" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M44 2 L57 9 L44 16" stroke="#AC3A40" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
 
   </section>
 
@@ -680,7 +733,7 @@
       <!-- ── Nó 5: Site Net e Cia ── -->
       <div class="conn-node">
         <a class="conn-btn"
-           href="Site/index.html"
+           href="home.html"
            title="Site Net e Cia">
           <div class="pulse-dot"></div>
           <img
@@ -701,10 +754,10 @@
 
       <!-- ── Adicione mais nós aqui ── -->
 
-      <!-- ── Centro: Logo da Netecia (clicável → Site/index.html) ── -->
+      <!-- ── Centro: Logo da Netecia (clicável → home.html) ── -->
       <a class="center-node"
-         href="Site/index.html"
-         title="Site Netecia">
+         href="home.html"
+         title="Ir para o Site">
         <svg class="center-logo" viewBox="41 44 340 346" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Netecia">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M365.47 86.6633L365.33 85.5588L365.197 84.8125L364.983 83.7866L364.688 82.6558L364.354 81.574L363.695 79.8727C362.459 77.053 360.781 74.4627 358.601 72.2775C356.468 70.1482 353.966 68.3818 351.171 67.2453L350.026 66.7854L348.953 66.4066L348.033 66.1327L346.775 65.8201L345.358 65.5542L343.563 65.3488L342.289 65.2803L341.671 65.2723H283.25C270.108 65.2723 259.334 76.0489 259.334 89.2011C259.334 98.7818 265.128 107.434 273.89 111.203L282.263 114.806L192.193 204.907C182.905 214.207 182.905 229.449 192.193 238.745C201.49 248.042 216.731 248.042 226.019 238.745L316.089 148.641L319.69 157.022C323.454 165.785 332.107 171.587 341.688 171.587C354.829 171.587 365.604 160.805 365.604 147.657V89.2011C365.604 88.3636 365.573 87.9471C365.548 87.5226 365.501 87.0924 365.47 86.6633Z" fill="#4C4D48"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M376.531 201.508L328.73 204.857C337.224 264.914 299.08 322.344 240.558 338.032C176.632 355.168 110.077 316.727 92.9483 252.78C75.8192 188.833 114.245 122.248 178.168 105.113C193.696 100.952 210.014 99.9126 225.943 102.119L229.205 54.2824C207.959 51.7537 186.452 53.3467 165.789 58.8902C122.516 70.4883 86.012 98.6117 63.6245 137.407C41.262 176.157 35.1595 221.924 46.7428 265.167C58.3364 308.453 86.4489 344.971 125.229 367.367C163.964 389.739 209.71 395.844 252.939 384.256C333.347 362.702 386.549 284.224 376.53 201.508H376.531Z" fill="#4C4D48"/>
@@ -898,6 +951,29 @@
         document.getElementById('connLabel').textContent = total === 1 ? 'Conexão ativa' : 'Conexões ativas';
 
       } catch { /* fallback silencioso */ }
+    })();
+
+    // ── Carrega downloads do hub via API ──────────────────────
+    (async () => {
+      try {
+        const r    = await fetch('api/downloads.php?hub=1');
+        const json = await r.json();
+        const list = json.data || [];
+        const ul   = document.getElementById('downloadsLista');
+        if (!list.length) {
+          ul.innerHTML = '<li style="color:rgba(154,152,144,0.5);font-size:0.78rem;">Nenhum arquivo disponível.</li>';
+          return;
+        }
+        ul.innerHTML = list.map((d, i) => {
+          const isExt = d.url.startsWith('http');
+          const href  = isExt ? d.url : d.url;
+          return `<li>
+            <a href="${href}" ${isExt ? 'target="_blank" rel="noopener"' : 'download target="_blank" rel="noopener"'}>
+              <span>${i + 1}</span> ${d.title.replace(/</g,'&lt;')}
+            </a>
+          </li>`;
+        }).join('');
+      } catch { /* silencioso — mantém "Carregando..." */ }
     })();
   </script>
 

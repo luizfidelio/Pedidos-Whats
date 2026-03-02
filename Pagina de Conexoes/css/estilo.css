@@ -1,0 +1,549 @@
+@charset UTF-8;
+
+body p {
+	color: #847f7f;
+	font-size: 13pt;
+}
+
+body h2 {
+	color: #847f7f;
+	font-size: 13pt;
+}
+body h3 {
+	color: #847f7f;
+	font-size: 13pt;
+}
+
+/*MENU*/
+/*desk*/
+/*.uk-navbar-nav>li>a {
+    color: white;
+}*/
+
+.cabecamenu {
+	background-color: #710606;
+}
+div.j-menu-uk-navbar-right a{
+	color: white;
+}
+span.j-bt-contato {
+	color: black;
+}
+span.j-bt-contato:hover {
+	color: #0000EE;
+	/*font-weight: bold;*/
+}
+div.j-uk-navbar-right {
+	z-index: 100;
+}
+#bt-contato {
+	background-color: white;
+	margin-top: 20px;
+	margin-right: 10px;
+	padding: 0px;
+	/*color: black;*/
+}
+div.j-topo-desk {
+	background-color: #710606;
+}
+/*menu mobile*/
+
+div.j-topo-mob{
+	background-color: #710606;
+}
+
+
+/*menu mob*/
+.btMenuIndex {
+	position: fixed;
+	top: 5px;
+	left: 10px;
+}
+
+#logo-mob {
+	width: 160px;
+	/*margin-top: 0px;*/
+}
+
+div#barra-topo-mb {
+	background-color: #710606;
+	width: 100%;
+	height: 80px;
+}
+
+div#img-mob {
+	background-color: #710606;
+	
+	text-align: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#topo {
+	background-color: rgba(122, 0, 0, 1.0);
+	width: 100%;
+	height: 80px;
+	/*position: fixed;*/
+}
+
+div#btMenu .uk-icon {
+	color: white;
+	padding: 5px;
+}
+div#btMenu svg {
+	position: fixed;
+	width: 30px;
+	height: 30px;
+	/*box-shadow: 0px 0px 10px black;*/
+	background-color: rgba(122, 0, 0, 1.0);
+}
+
+
+div.uk-navbar-center {
+	padding-left: 37%;
+	background-color: rgba(122, 0, 0, 1.0);
+	width: 100%;
+	/*padding-right: 20px;*/
+
+}
+
+div.uk-navbar-center a {/*força as letras no menu p branco*/
+	color: white;
+
+}
+
+#logo {
+
+	display: block;
+	float: top;
+	position: absolute;
+	top: 15px;
+	right: 3%;
+	width: 120px;
+	height: 120px;
+}
+/*
+.uk-background-width-1-1 {
+	height: 250px;
+
+}*/
+
+
+
+div#sessao1 {
+	height: 100px;
+
+}
+
+div#sessao1 p {
+	font-size: 20pt;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(0, 0, 0, .5);
+	padding: 10px;
+	margin: 250px 10px 0px 10px;
+
+
+}
+
+div#xxx {
+	background-color: black;
+	
+	position: absolute;
+	top: 568px;
+}
+
+div.sec-1 {
+	
+	
+	border: black;
+	background: url('../imagens/fundo1.jpg') no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 300px;
+	background-size: cover;
+
+}
+div.sec-1 p {
+	background-color: rgba(0, 0, 0, .5);
+	font-size: 20pt;
+	position: relative;
+	top: 60%;
+	padding: 10px 15px 10px 15px;
+	text-align: center;
+	color: white;
+
+}
+
+div.sec-2 {
+	background-color: white;
+}
+
+div#uk-sec-2 {
+	background-color: white;
+	margin-bottom: -30px;
+
+}
+div#uk-sec-2 p {
+	color: #847f7f;
+	text-align: justify;
+	margin-left: 15px;
+	margin-right: 15px;
+
+}
+div#uk-sec-3 {
+	background-color: white;
+	color: #847f7f;
+	margin-top: -50px;
+	margin-bottom: -30px;
+}
+
+div#uk-sec-3 h3{
+	color: #847f7f;
+	text-align: center;
+}
+div#uk-sec-3 p{
+	color: #847f7f;
+	text-align: justify;
+}
+
+div#uk-sec-4 {
+	background-color: white;
+	color: #847f7f;
+	margin-top: -50px;
+	margin-bottom: -30px;
+}
+
+div#uk-sec-4 h3{
+	color: #847f7f;
+	text-align: center;
+}
+div#uk-sec-4 p{
+	color: #847f7f;
+	text-align: justify;
+	margin-bottom: 10px;
+}
+div#uk-sec-4 img {
+	margin-top: 15px;
+	padding: 10px;
+}
+
+/*rodape*/
+div#uk-rodape {
+	padding-bottom: 200px;
+}
+div#uk-rodape h3{
+	padding-bottom: 10px;
+	text-align: center;
+}
+div#uk-rodape p{
+	color: white;
+	text-align: center;
+}
+
+#click {
+	/*background-color: white;*/
+	color: white;
+}
+
+div#sociais {
+	/*margin-left: 25px;
+	padding-left: 25px;*/
+	text-align: center;
+}
+
+
+.whatsapp {
+    position: fixed;
+    /*top: 80%;
+    left: 1%;*/
+    right: 20px;
+    bottom: 20px;
+    /*padding: 10px;*/
+    z-index: 10000000;
+    width: 160px;
+}
+#rolar-cima {
+	position: fixed;
+    /*top: 80%;
+    left: 1%;*/
+    right: 38px;
+    bottom: 120px;
+    /*padding: 10px;*/
+    z-index: 10000000;
+    /*width: 160px;*/
+    background-color: white;
+    border-radius: 100%;
+    padding: 5px;
+    box-shadow: 0px 0px 2px black
+
+}
+#rolar-cima:hover {
+	background-color: rgba(0, 0, 0, .7);
+	color: white;
+}
+
+
+/*comercio*/
+
+div.sec-loja {
+	
+	
+	border: black;
+	background: url('../imagens/loja.jpg') no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 400px;
+	background-size: cover;
+
+}
+
+div.sec-loja p {
+	background-color: rgba(0, 0, 0, .5);
+	font-size: 20pt;
+	position: relative;
+	top: 60%;
+	padding: 10px 15px 10px 15px;
+	text-align: center;
+	color: white;
+
+}
+
+div#uk-sec-down {
+	background-color: white;
+}
+div#uk-sec-down a {
+	color: #847f7f;
+}
+div#uk-sec-down h3 {
+	color: black;
+}
+
+div#uk-comercio-1 h3 {
+	text-align: center;
+}
+div#uk-comercio-1 p {
+	text-align: justify;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+div#uk-comercio-1-1 {
+	background-color: black;
+	/*width: 100%;
+	object-position: center;*/
+}
+
+ 
+div#uk-comercio-1-1 h1 {
+	background-color: rgba(0, 0, 0, .5);
+	padding: 10px;
+	text-align: left;
+}
+.uk-panel {
+	/*object-position: center;
+	padding-left: 10%;*/
+}
+
+div#tipo-comercio p {
+	margin-left: 40px;
+}
+div#tipo-comercio h3 {
+	text-align: center;
+}
+
+/*restaurante*/
+
+div.sec-restaurante {
+	border: black;
+/*	background: url('../imagens/pizza-topo.jpg') no-repeat;*/
+	background-position: center;
+	width: 100%;
+	/*height: 400px;*/
+	background-size: cover;
+
+}
+
+div#uk-restaurante {
+	margin-bottom: 0px;
+}
+div#uk-restaurante h1 {
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+	margin-top: 100px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+div#uk-sec-2-restaurante {
+	margin-top: 0px;
+	background-color: white;
+}
+div#uk-sec-2-restaurante h2{
+	color: #847f7f;
+	text-align: center;
+	font-size: 20pt;
+
+}
+div#uk-sec-2-restaurante h3{
+	color: #847f7f;
+	text-align: center;
+	font-size: 15pt;
+
+}
+div#uk-sec-2-restaurante p{
+	margin-left: 10px;
+
+}
+
+div#restaurante-video {
+	
+	margin: 10px 15px 15px 15px;
+	text-align: center;
+}
+
+div#ligar {
+	padding-top: 30px;
+	text-align: center;
+	font-size: 30pt;
+}
+div#ligar p {
+	margin: 0px 20px 0px 20px;
+	font-size: 15pt;
+	text-align: justify;
+}
+div#ligar img {
+	padding: 50px;
+}	
+
+
+/*pagina de produtos*/
+
+div#uk-topo-produtos {
+	background-color: #c8c8c8;
+
+}
+
+div#uk-topo-produtos h1 {
+	text-align: center;
+	color: black;
+	object-position: center;
+	padding-top: 90px;
+	font-style: italic;
+	/*box-shadow: 1px 1px 10px black*/
+}
+div#uk-topo-produtos h3 {
+	
+	color: black;
+}
+
+div#uk-produtos { 
+	margin: 40px 20px 0px 20px;
+}
+
+div#uk-topo-produtos-automacao {
+	background-color: #c8c8c8;
+}
+div#uk-topo-produtos-automacao p {
+	font-size: 15pt;
+	color: black;
+	text-align: center;
+}
+
+/*teste do topo do gerlen*/
+
+div#topog {
+	padding: 0px;
+	background-color: #ec9595;
+	margin: 0px;
+}
+
+.j-topog-uk-light {
+
+}
+
+/*gdweb*/
+
+#logo-gdweb {
+	width: 160px;	
+	margin-top: 25px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#topo-gdweb {
+	background-color: #710606;
+	width: 100%;
+	height: 80px;
+	/*position: fixed;*/
+	text-align: center;
+	
+}
+
+div.sec1-gdw {
+	margin-top: 0px;
+	background-color: #710606;
+}
+div.sec1-gdw h2{
+	margin-top: 0px;
+	font-size: 20pt;
+	color: white;
+	text-align: center;
+	margin-top: -20px;
+	padding-top: 0px;
+	padding-bottom: 35px;
+	font-weight: bold;
+}
+div#sec1-gdw-grid-col2 {
+	text-align: justify;
+
+}
+div#sec1-gdw-grid-col2 h1 {
+	font-size: 20pt;
+	color: white;
+	margin-top: 30px;
+	text-align: center;
+}
+
+@media (min-width:  800px){
+
+	div#sec1-gdw-grid-col2 h1 {
+		margin-top: 90px;
+		
+	}
+}
+div#sec1-gdw-grid-col2 span {
+	font-size: 25pt;
+	font-weight: bold;
+}
+
+div.sec2-gdw{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+div#gdw-video{
+	margin-bottom: 10px;
+}
+div#gdw-video h2 {
+	font-weight: bold;
+}
+@media (min-width:  800px) { /*configuração exclusiva p telas maiores que 800px*/
+	div.sec2-gdw {
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	
+}

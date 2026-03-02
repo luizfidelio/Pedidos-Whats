@@ -1,0 +1,12 @@
+@charset UTF-8;
+
+div.form-contato {
+	text-align: center;
+	/*overflow: hidden;*/
+	padding-top: 10px;
+}
+
+div.form-contato iframe{
+	
+	overflow: hidden;
+}
