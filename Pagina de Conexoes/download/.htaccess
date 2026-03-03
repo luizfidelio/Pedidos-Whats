@@ -1,7 +1,17 @@
 Options -Indexes
 DirectoryIndex index.html
 
-# Bloqueia acesso direto a arquivos PHP, HTAccess e HTML avulsos
+# Força index.html mesmo que exista index.php no servidor
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /download/
+    # Raiz da pasta → index.html
+    RewriteRule ^$ index.html [L]
+    # Redireciona qualquer acesso a index.php → index.html
+    RewriteRule ^index\.php$ index.html [R=301,L]
+</IfModule>
+
+# Bloqueia acesso direto a PHP e .htaccess nesta pasta
 <FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|htaccess|htpasswd)$">
     <IfModule mod_authz_core.c>
         Require all denied
