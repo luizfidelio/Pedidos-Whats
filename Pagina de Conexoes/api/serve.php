@@ -45,17 +45,25 @@ if ($filename === '' || $filename === '.') {
 
 // Pasta protegida: um nível acima de /api/, irmã de /api/
 $arquivosDir = realpath(dirname(__DIR__) . '/arquivos');
-$filepath    = $arquivosDir . DIRECTORY_SEPARATOR . $filename;
 
-// Garante que o caminho real fica dentro de /arquivos/
-if (!$arquivosDir || strpos(realpath($filepath), $arquivosDir) !== 0) {
-    http_response_code(403);
-    exit('Acesso negado.');
+if (!$arquivosDir) {
+    http_response_code(500);
+    exit('Pasta de arquivos não encontrada no servidor. Crie a pasta arquivos/ na raiz do site.');
 }
 
+$filepath = $arquivosDir . DIRECTORY_SEPARATOR . $filename;
+
+// 1º verifica existência (404 correto ao usuário)
 if (!file_exists($filepath) || !is_file($filepath)) {
     http_response_code(404);
-    exit('Arquivo não encontrado no servidor. Verifique se ele foi enviado para a pasta arquivos/.');
+    exit('Arquivo não encontrado no servidor. Verifique se "' . htmlspecialchars($filename) . '" foi enviado para a pasta arquivos/.');
+}
+
+// 2º garante que o caminho real fica dentro de /arquivos/ (anti path-traversal)
+$realFilepath = realpath($filepath);
+if (!$realFilepath || strpos($realFilepath, $arquivosDir) !== 0) {
+    http_response_code(403);
+    exit('Acesso negado.');
 }
 
 // ── Detecta MIME type ──────────────────────────────────────
