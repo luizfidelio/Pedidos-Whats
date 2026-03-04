@@ -66,18 +66,24 @@ if (!$realFilepath || strpos($realFilepath, $arquivosDir) !== 0) {
     exit('Acesso negado.');
 }
 
-// ── Detecta MIME type ──────────────────────────────────────
-$ext  = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-$mime = match($ext) {
-    'exe'  => 'application/octet-stream',
-    'zip'  => 'application/zip',
-    'pdf'  => 'application/pdf',
-    'msi'  => 'application/x-msdownload',
-    'dmg'  => 'application/x-apple-diskimage',
-    'pkg'  => 'application/x-newton-compatible-pkg',
-    'apk'  => 'application/vnd.android.package-archive',
-    default => mime_content_type($filepath) ?: 'application/octet-stream',
-};
+// ── Detecta MIME type (compatível PHP 7.4+) ───────────────
+$ext     = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+$mimeMap = [
+    'exe' => 'application/octet-stream',
+    'zip' => 'application/zip',
+    'pdf' => 'application/pdf',
+    'msi' => 'application/x-msdownload',
+    'dmg' => 'application/x-apple-diskimage',
+    'pkg' => 'application/x-newton-compatible-pkg',
+    'apk' => 'application/vnd.android.package-archive',
+];
+if (isset($mimeMap[$ext])) {
+    $mime = $mimeMap[$ext];
+} elseif (function_exists('mime_content_type')) {
+    $mime = mime_content_type($filepath) ?: 'application/octet-stream';
+} else {
+    $mime = 'application/octet-stream';
+}
 
 // ── Envia headers e arquivo ────────────────────────────────
 while (ob_get_level()) { ob_end_clean(); }
