@@ -966,9 +966,9 @@
         }
         ul.innerHTML = list.map((d, i) => {
           const isExt = d.url.startsWith('http');
-          const href  = isExt ? d.url : d.url;
+          const href  = isExt ? d.url : `api/serve.php?id=${d.id}`;
           return `<li>
-            <a href="${href}" ${isExt ? 'target="_blank" rel="noopener"' : 'download target="_blank" rel="noopener"'}>
+            <a href="${href}" target="_blank" rel="noopener">
               <span>${i + 1}</span> ${d.title.replace(/</g,'&lt;')}
             </a>
           </li>`;
