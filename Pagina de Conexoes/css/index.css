@@ -257,11 +257,15 @@ div#img-mob4:hover #p-img-mob4 {/*isso aqui, faz as alteraçõs em "p1", quando 
 /* ── Painel 5: Criação de Sites ── */
 div.j-bg-grid-5 {
 	background-image: url("../imagens/e.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	height: 720px;
 	background-size: 100% 100%;
 }
 div.j-bg-grid-5:hover {
 	background-image: url("../imagens/e-esc.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	color: white;
 	transition: all 1s;
 }
@@ -273,11 +277,15 @@ div.j-bg-grid-5:hover #p5 {
 /* ── Painel 6: WhatsApp Business ── */
 div.j-bg-grid-6 {
 	background-image: url("../imagens/f.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	height: 720px;
 	background-size: 100% 100%;
 }
 div.j-bg-grid-6:hover {
 	background-image: url("../imagens/f-esc.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	color: white;
 	transition: all 1s;
 }
@@ -289,6 +297,8 @@ div.j-bg-grid-6:hover #p6 {
 /* ── Mobile painel 5: Criação de Sites ── */
 div#img-mob5 {
 	background-image: url("../imagens/e-mob.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	height: 200px;
 	background-size: 100% 100%;
 }
@@ -297,6 +307,8 @@ div#img-mob5 p {
 }
 div#img-mob5:hover {
 	background-image: url("../imagens/e-mob-esc.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	transition: all 1s;
 }
 div#img-mob5:hover #p-img-mob5 {
@@ -307,6 +319,8 @@ div#img-mob5:hover #p-img-mob5 {
 /* ── Mobile painel 6: WhatsApp Business ── */
 div#img-mob6 {
 	background-image: url("../imagens/f-mob.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	height: 200px;
 	background-size: 100% 100%;
 }
@@ -315,6 +329,8 @@ div#img-mob6 p {
 }
 div#img-mob6:hover {
 	background-image: url("../imagens/f-mob-esc.svg");
+	background-color: #710606;
+	background-blend-mode: multiply;
 	transition: all 1s;
 }
 div#img-mob6:hover #p-img-mob6 {
