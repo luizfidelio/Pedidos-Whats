@@ -254,6 +254,92 @@ div#img-mob4:hover #p-img-mob4 {/*isso aqui, faz as alteraçõs em "p1", quando 
 	
 }
 
+/* ── Painel 5: Criação de Sites ── */
+div.j-bg-grid-5 {
+	background: linear-gradient(160deg, #0a1628 0%, #1a2d4a 50%, #0d2035 100%);
+	height: 720px;
+	background-size: cover;
+	position: relative;
+}
+div.j-bg-grid-5::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(29,78,216,0.08) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(29,78,216,0.08) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+div.j-bg-grid-5:hover {
+	background: linear-gradient(160deg, #071020 0%, #112240 50%, #091828 100%);
+	transition: all 1s;
+}
+div.j-bg-grid-5:hover #p5 {
+	color: black;
+	background-color: white;
+}
+
+/* ── Painel 6: WhatsApp Business ── */
+div.j-bg-grid-6 {
+	background: linear-gradient(160deg, #071510 0%, #0d2a18 50%, #051a0e 100%);
+	height: 720px;
+	background-size: cover;
+	position: relative;
+}
+div.j-bg-grid-6::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(37,211,102,0.07) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(37,211,102,0.07) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+div.j-bg-grid-6:hover {
+	background: linear-gradient(160deg, #030e08 0%, #081c10 50%, #030e08 100%);
+	transition: all 1s;
+}
+div.j-bg-grid-6:hover #p6 {
+	color: black;
+	background-color: white;
+}
+
+/* ── Mobile painel 5: Criação de Sites ── */
+div#img-mob5 {
+	background: linear-gradient(160deg, #0a1628 0%, #1a2d4a 100%);
+	height: 200px;
+	background-size: 100% 100%;
+}
+div#img-mob5 p {
+	margin-top: 70px;
+}
+div#img-mob5:hover {
+	background: linear-gradient(160deg, #071020 0%, #112240 100%);
+	transition: all 1s;
+}
+div#img-mob5:hover #p-img-mob5 {
+	font-size: 25pt;
+	background-color: rgba(29,78,216,.9);
+}
+
+/* ── Mobile painel 6: WhatsApp Business ── */
+div#img-mob6 {
+	background: linear-gradient(160deg, #071510 0%, #0d2a18 100%);
+	height: 200px;
+	background-size: 100% 100%;
+}
+div#img-mob6 p {
+	margin-top: 70px;
+}
+div#img-mob6:hover {
+	background: linear-gradient(160deg, #030e08 0%, #081c10 100%);
+	transition: all 1s;
+}
+div#img-mob6:hover #p-img-mob6 {
+	font-size: 25pt;
+	background-color: rgba(37,211,102,.9);
+}
+
 #fundo-menu-grande {
 	background-color: unset;
 	box-shadow: none;
