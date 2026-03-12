@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgEesc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8bccf"/>
+      <stop offset="50%" stop-color="#90a8bc"/>
+      <stop offset="100%" stop-color="#a0b4c8"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="720" fill="url(#bgEesc)"/>
+  <!-- Dark overlay for hover state -->
+  <rect width="200" height="720" fill="#1a2a3a" opacity="0.45"/>
+  <g opacity="0.06" stroke="#3a5a7a" stroke-width="0.5">
+    <line x1="0" y1="90" x2="200" y2="90"/>
+    <line x1="0" y1="180" x2="200" y2="180"/>
+    <line x1="0" y1="270" x2="200" y2="270"/>
+    <line x1="0" y1="360" x2="200" y2="360"/>
+    <line x1="0" y1="450" x2="200" y2="450"/>
+    <line x1="0" y1="540" x2="200" y2="540"/>
+    <line x1="50" y1="0" x2="50" y2="720"/>
+    <line x1="100" y1="0" x2="100" y2="720"/>
+    <line x1="150" y1="0" x2="150" y2="720"/>
+  </g>
+  <rect x="18" y="200" width="164" height="120" rx="6" fill="#2c3e55" opacity="0.9"/>
+  <rect x="18" y="200" width="164" height="22" rx="6" fill="#3d5268" opacity="0.95"/>
+  <rect x="18" y="214" width="164" height="8" fill="#3d5268" opacity="0.95"/>
+  <circle cx="30" cy="211" r="4.5" fill="#ef4444" opacity="0.8"/>
+  <circle cx="42" cy="211" r="4.5" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="54" cy="211" r="4.5" fill="#22c55e" opacity="0.8"/>
+  <rect x="66" y="205" width="82" height="12" rx="6" fill="#253444" opacity="0.95"/>
+  <rect x="22" y="224" width="156" height="14" fill="#3d5a7a" opacity="0.8"/>
+  <rect x="22" y="240" width="156" height="38" fill="#2a3f55" opacity="0.7"/>
+  <rect x="50" y="248" width="80" height="7" rx="2" fill="#9ac0d8" opacity="0.6"/>
+  <rect x="60" y="259" width="60" height="5" rx="2" fill="#7aaac8" opacity="0.5"/>
+  <rect x="68" y="267" width="24" height="8" rx="4" fill="#6aaa8a" opacity="0.7"/>
+  <rect x="22" y="282" width="46" height="30" rx="3" fill="#3a5068" opacity="0.7"/>
+  <rect x="74" y="282" width="46" height="30" rx="3" fill="#3a5068" opacity="0.7"/>
+  <rect x="126" y="282" width="50" height="30" rx="3" fill="#3a5068" opacity="0.7"/>
+  <rect x="90" y="321" width="20" height="22" fill="#2a3f55" opacity="0.8"/>
+  <rect x="74" y="342" width="52" height="7" rx="3" fill="#3a5068" opacity="0.7"/>
+  <text x="8" y="100" font-family="monospace" font-size="48" fill="#3a5a7a" opacity="0.1">&lt;</text>
+  <text x="140" y="170" font-family="monospace" font-size="48" fill="#3a5a7a" opacity="0.1">&gt;</text>
+  <text x="10" y="480" font-family="monospace" font-size="44" fill="#3a5a7a" opacity="0.08">{</text>
+  <text x="145" y="560" font-family="monospace" font-size="44" fill="#3a5a7a" opacity="0.08">}</text>
+</svg>

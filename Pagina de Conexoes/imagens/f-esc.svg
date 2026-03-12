@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgFesc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#b8ccbe"/>
+      <stop offset="50%"  stop-color="#a4bca8"/>
+      <stop offset="100%" stop-color="#b0beb8"/>
+    </linearGradient>
+    <linearGradient id="phoneFesc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1a2e22"/>
+      <stop offset="100%" stop-color="#0e1c14"/>
+    </linearGradient>
+    <linearGradient id="screenFesc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#f0f4f2"/>
+      <stop offset="100%" stop-color="#e2ece6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="720" fill="url(#bgFesc)"/>
+  <!-- Dark overlay for hover state -->
+  <rect width="200" height="720" fill="#0a1f10" opacity="0.50"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.06" stroke="#2a5a3a" stroke-width="0.5">
+    <line x1="0" y1="90"  x2="200" y2="90"/>
+    <line x1="0" y1="180" x2="200" y2="180"/>
+    <line x1="0" y1="270" x2="200" y2="270"/>
+    <line x1="0" y1="360" x2="200" y2="360"/>
+    <line x1="0" y1="450" x2="200" y2="450"/>
+    <line x1="0" y1="540" x2="200" y2="540"/>
+    <line x1="0" y1="630" x2="200" y2="630"/>
+    <line x1="50"  y1="0" x2="50"  y2="720"/>
+    <line x1="100" y1="0" x2="100" y2="720"/>
+    <line x1="150" y1="0" x2="150" y2="720"/>
+  </g>
+
+  <!-- Smartphone body -->
+  <rect x="54" y="185" width="92" height="175" rx="14" fill="url(#phoneFesc)" opacity="0.85" stroke="#3a5a42" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Notch -->
+  <rect x="82" y="188" width="36" height="6" rx="3" fill="#0e1c14" opacity="0.9"/>
+  <!-- Screen -->
+  <rect x="60" y="200" width="80" height="148" rx="4" fill="url(#screenFesc)" opacity="0.9"/>
+
+  <!-- WhatsApp-style chat UI -->
+  <!-- Top bar (green header) -->
+  <rect x="60" y="200" width="80" height="20" rx="0" fill="#25D366" opacity="0.9"/>
+  <circle cx="72" cy="210" r="6" fill="#1aaa55" opacity="0.9"/>
+  <rect x="82" y="206" width="32" height="4" rx="2" fill="white" opacity="0.8"/>
+  <rect x="82" y="213" width="20" height="3" rx="1" fill="rgba(255,255,255,0.6)"/>
+
+  <!-- Chat bubbles -->
+  <rect x="64" y="225" width="44" height="16" rx="8" fill="#e5e5e5" opacity="0.9"/>
+  <rect x="66" y="229" width="40" height="4" rx="2" fill="#999" opacity="0.5"/>
+  <rect x="66" y="235" width="28" height="3" rx="1" fill="#999" opacity="0.3"/>
+
+  <rect x="84" y="246" width="48" height="16" rx="8" fill="#dcf8c6" opacity="0.9"/>
+  <rect x="87" y="250" width="38" height="4" rx="2" fill="#4a9a5a" opacity="0.4"/>
+  <rect x="87" y="256" width="26" height="3" rx="1" fill="#4a9a5a" opacity="0.25"/>
+
+  <rect x="64" y="267" width="52" height="20" rx="8" fill="#e5e5e5" opacity="0.9"/>
+  <rect x="66" y="271" width="48" height="4" rx="2" fill="#999" opacity="0.5"/>
+  <rect x="66" y="277" width="36" height="3" rx="1" fill="#999" opacity="0.3"/>
+  <rect x="66" y="282" width="42" height="3" rx="1" fill="#999" opacity="0.25"/>
+
+  <rect x="76" y="292" width="56" height="16" rx="8" fill="#dcf8c6" opacity="0.9"/>
+  <rect x="78" y="296" width="52" height="4" rx="2" fill="#4a9a5a" opacity="0.4"/>
+  <rect x="78" y="302" width="40" height="3" rx="1" fill="#4a9a5a" opacity="0.25"/>
+
+  <rect x="64" y="313" width="40" height="14" rx="7" fill="#e5e5e5" opacity="0.9"/>
+  <rect x="66" y="317" width="36" height="4" rx="2" fill="#999" opacity="0.5"/>
+  <rect x="66" y="323" width="22" height="3" rx="1" fill="#999" opacity="0.3"/>
+
+  <!-- Input bar -->
+  <rect x="60" y="334" width="80" height="14" fill="#f5f5f5" opacity="0.9"/>
+  <rect x="64" y="337" width="56" height="8" rx="4" fill="#e0e0e0" opacity="0.8"/>
+  <circle cx="132" cy="341" r="5" fill="#25D366" opacity="0.9"/>
+
+  <!-- Phone home bar -->
+  <rect x="84" y="350" width="32" height="3" rx="1.5" fill="#2a4432" opacity="0.4"/>
+
+  <!-- Floating bubbles -->
+  <rect x="10" y="280" width="38" height="22" rx="10" fill="#25D366" opacity="0.25"/>
+  <rect x="13" y="285" width="32" height="4" rx="2" fill="white" opacity="0.4"/>
+  <rect x="13" y="292" width="22" height="3" rx="1" fill="white" opacity="0.3"/>
+  <polygon points="10,298 18,298 10,306" fill="#25D366" opacity="0.2"/>
+
+  <rect x="152" y="260" width="36" height="20" rx="10" fill="#e5e5e5" opacity="0.3"/>
+  <rect x="155" y="265" width="28" height="4" rx="2" fill="#4a6a5a" opacity="0.3"/>
+  <rect x="155" y="272" width="18" height="3" rx="1" fill="#4a6a5a" opacity="0.2"/>
+  <polygon points="188,276 180,276 188,284" fill="#e5e5e5" opacity="0.25"/>
+
+  <!-- Agent avatars row -->
+  <circle cx="50"  cy="430" r="18" fill="#25D366" opacity="0.3"/>
+  <text x="50"  y="436" font-family="Arial,sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.6" font-weight="bold">A</text>
+  <circle cx="90"  cy="430" r="18" fill="#1d4ed8" opacity="0.25"/>
+  <text x="90"  y="436" font-family="Arial,sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.6" font-weight="bold">B</text>
+  <circle cx="130" cy="430" r="18" fill="#7c3aed" opacity="0.25"/>
+  <text x="130" y="436" font-family="Arial,sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.6" font-weight="bold">C</text>
+  <circle cx="170" cy="430" r="18" fill="#ea580c" opacity="0.25"/>
+  <text x="170" y="436" font-family="Arial,sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.5" font-weight="bold">D</text>
+
+  <!-- Connection lines -->
+  <line x1="68"  y1="430" x2="72"  y2="430" stroke="#3a7a4a" stroke-width="1" opacity="0.2"/>
+  <line x1="108" y1="430" x2="112" y2="430" stroke="#3a7a4a" stroke-width="1" opacity="0.2"/>
+  <line x1="148" y1="430" x2="152" y2="430" stroke="#3a7a4a" stroke-width="1" opacity="0.2"/>
+
+  <!-- Kanban columns -->
+  <rect x="10"  y="490" width="52" height="80" rx="6" fill="#2a4a32" opacity="0.25"/>
+  <rect x="14"  y="494" width="44" height="10" rx="3" fill="#3a8a4a" opacity="0.3"/>
+  <rect x="14"  y="508" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.15"/>
+  <rect x="14"  y="525" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.12"/>
+  <rect x="14"  y="542" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.10"/>
+  <text x="36"  y="502" font-family="Arial,sans-serif" font-size="5" fill="white" text-anchor="middle" opacity="0.4">AGUARDANDO</text>
+
+  <rect x="74"  y="490" width="52" height="80" rx="6" fill="#2a4a32" opacity="0.25"/>
+  <rect x="78"  y="494" width="44" height="10" rx="3" fill="#f59e0b" opacity="0.25"/>
+  <rect x="78"  y="508" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.15"/>
+  <rect x="78"  y="525" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.12"/>
+  <text x="100" y="502" font-family="Arial,sans-serif" font-size="5" fill="white" text-anchor="middle" opacity="0.4">EM ATEND.</text>
+
+  <rect x="138" y="490" width="52" height="80" rx="6" fill="#2a4a32" opacity="0.25"/>
+  <rect x="142" y="494" width="44" height="10" rx="3" fill="#3a8a4a" opacity="0.3"/>
+  <rect x="142" y="508" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.15"/>
+  <rect x="142" y="525" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.12"/>
+  <rect x="142" y="542" width="44" height="14" rx="3" fill="#4a9a5a" opacity="0.10"/>
+  <text x="164" y="502" font-family="Arial,sans-serif" font-size="5" fill="white" text-anchor="middle" opacity="0.4">FINALIZADO</text>
+
+  <!-- Particles -->
+  <circle cx="20"  cy="80"  r="3"   fill="#2a6a3a" opacity="0.2"/>
+  <circle cx="180" cy="120" r="2.5" fill="#2a6a3a" opacity="0.18"/>
+  <circle cx="160" cy="600" r="3"   fill="#2a6a3a" opacity="0.2"/>
+  <circle cx="30"  cy="650" r="2"   fill="#2a6a3a" opacity="0.15"/>
+  <circle cx="100" cy="680" r="4"   fill="#2a6a3a" opacity="0.12"/>
+
+  <!-- WhatsApp logo subtle -->
+  <circle cx="100" cy="120" r="45" fill="#25D366" opacity="0.05"/>
+  <path d="M100 82 C78.5 82 61 99.5 61 121 C61 128.5 63.2 135.5 67 141.4 L62.5 157.5 L79.2 153.2 C84.8 156.5 91.2 158.5 98 158.5 C119.5 158.5 137 141 137 119.5 C137 98 119.5 82 100 82z M100 152.5 C93.5 152.5 87.4 150.6 82.3 147.2 L81.5 146.7 L70.8 149.4 L73.5 139.2 L72.9 138.3 C69.1 133 67 126.6 67 119.5 C67 102.8 80.5 89.5 100 89.5 C119.5 89.5 133 102.8 133 119.5 C133 136.2 119.5 152.5 100 152.5z" fill="#25D366" opacity="0.06"/>
+</svg>

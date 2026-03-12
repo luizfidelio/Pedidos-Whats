@@ -256,22 +256,13 @@ div#img-mob4:hover #p-img-mob4 {/*isso aqui, faz as alteraçõs em "p1", quando 
 
 /* ── Painel 5: Criação de Sites ── */
 div.j-bg-grid-5 {
-	background: linear-gradient(160deg, #0a1628 0%, #1a2d4a 50%, #0d2035 100%);
+	background-image: url("../imagens/e.svg");
 	height: 720px;
-	background-size: cover;
-	position: relative;
-}
-div.j-bg-grid-5::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background-image:
-		linear-gradient(rgba(29,78,216,0.08) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(29,78,216,0.08) 1px, transparent 1px);
-	background-size: 40px 40px;
+	background-size: 100% 100%;
 }
 div.j-bg-grid-5:hover {
-	background: linear-gradient(160deg, #071020 0%, #112240 50%, #091828 100%);
+	background-image: url("../imagens/e-esc.svg");
+	color: white;
 	transition: all 1s;
 }
 div.j-bg-grid-5:hover #p5 {
@@ -281,22 +272,13 @@ div.j-bg-grid-5:hover #p5 {
 
 /* ── Painel 6: WhatsApp Business ── */
 div.j-bg-grid-6 {
-	background: linear-gradient(160deg, #071510 0%, #0d2a18 50%, #051a0e 100%);
+	background-image: url("../imagens/f.svg");
 	height: 720px;
-	background-size: cover;
-	position: relative;
-}
-div.j-bg-grid-6::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background-image:
-		linear-gradient(rgba(37,211,102,0.07) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(37,211,102,0.07) 1px, transparent 1px);
-	background-size: 40px 40px;
+	background-size: 100% 100%;
 }
 div.j-bg-grid-6:hover {
-	background: linear-gradient(160deg, #030e08 0%, #081c10 50%, #030e08 100%);
+	background-image: url("../imagens/f-esc.svg");
+	color: white;
 	transition: all 1s;
 }
 div.j-bg-grid-6:hover #p6 {
@@ -306,7 +288,7 @@ div.j-bg-grid-6:hover #p6 {
 
 /* ── Mobile painel 5: Criação de Sites ── */
 div#img-mob5 {
-	background: linear-gradient(160deg, #0a1628 0%, #1a2d4a 100%);
+	background-image: url("../imagens/e-mob.svg");
 	height: 200px;
 	background-size: 100% 100%;
 }
@@ -314,7 +296,7 @@ div#img-mob5 p {
 	margin-top: 70px;
 }
 div#img-mob5:hover {
-	background: linear-gradient(160deg, #071020 0%, #112240 100%);
+	background-image: url("../imagens/e-mob-esc.svg");
 	transition: all 1s;
 }
 div#img-mob5:hover #p-img-mob5 {
@@ -324,7 +306,7 @@ div#img-mob5:hover #p-img-mob5 {
 
 /* ── Mobile painel 6: WhatsApp Business ── */
 div#img-mob6 {
-	background: linear-gradient(160deg, #071510 0%, #0d2a18 100%);
+	background-image: url("../imagens/f-mob.svg");
 	height: 200px;
 	background-size: 100% 100%;
 }
@@ -332,7 +314,7 @@ div#img-mob6 p {
 	margin-top: 70px;
 }
 div#img-mob6:hover {
-	background: linear-gradient(160deg, #030e08 0%, #081c10 100%);
+	background-image: url("../imagens/f-mob-esc.svg");
 	transition: all 1s;
 }
 div#img-mob6:hover #p-img-mob6 {
