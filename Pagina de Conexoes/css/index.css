@@ -49,8 +49,13 @@ div.sec-topo {
 }
 div.j-topo-grid {
 	background-color: rgba(255, 255, 255, 0);
+}
 
-
+@media (min-width: 640px) {
+	.j-topo-grid .uk-width-1-6\@s {
+		width: 13.5%;
+		flex: none;
+	}
 }
 div.j-topo-grid p {
 	margin-top: 270px;
